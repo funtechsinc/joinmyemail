@@ -3,47 +3,7 @@ from functions.Generate_Hash import hash_function
 from models.sql_model import UserTable
 from functions.Generate_Hash import verify_hash
 from decoders.user import decode_user
-
-
-# create a user
-def Auth_Create_User(doc: dict) -> dict:
-    doc = doc
-    email = doc["email"]
-
-    # check is user already exist
-    result = db_session.query(UserTable).filter(UserTable.email == email).one_or_none()
-
-    if str(result) == "None":
-        # hash password
-        hash_password = hash_function(doc["password"])
-        doc["password"] = hash_password
-
-        username = doc["username"]
-        company = doc["company"]
-        handle = doc["handle"]
-
-        # req
-        req = UserTable(
-            username,
-            email,
-            hash_password,
-            company,
-            handle
-        )
-
-        # add and commit changes
-        db_session.add(req)
-        db_session.commit()
-
-        return {
-            'status': 'success',
-            'message': 'User created successfully'
-        }
-    else:
-        return {
-            'status': 'error',
-            'message': f'user already exist with email: {email}'
-        }
+import json
 
 
 # login account
@@ -68,6 +28,52 @@ def auth_login(email: str, password: str) -> dict:
         return {
             'status': 'error',
             'message': 'Invalid credentials'
+        }
+
+
+# create a user
+def auth_register(doc: dict) -> dict:
+    try:
+        doc = doc
+        email = doc["email"]
+        password = doc["password"]
+
+        # check is user already exist
+        result = db_session.query(UserTable).filter(UserTable.email == email).one_or_none()
+
+        if str(result) == "None":
+            # hash password
+            hash_password = hash_function(password)
+            doc["password"] = hash_password
+
+            username = doc["username"]
+            company = doc["company"]
+            handle = doc["handle"]
+
+            # req
+            req = UserTable(
+                username,
+                email,
+                hash_password,
+                company,
+                handle
+            )
+
+            # add and commit changes
+            db_session.add(req)
+            db_session.commit()
+
+            # login after creating an account
+            return auth_login(email, password)
+        else:
+            return {
+                'status': 'error',
+                'message': f'user already exist with email: {email}'
+            }
+    except Exception as e:
+        return {
+            'status': 'error',
+            'message': str(e)
         }
 
 
@@ -103,11 +109,11 @@ def auth_update_profile(doc: dict) -> dict:
 # auth_update_profile(update)
 
 
-# user = {
-#     "username": "demo_user",
-#     "email": "demo@example.com",
-#     "password": "demo_password",
-#     "company": "demo_company",
-#     "handle": "funtechs"
-# }
-# print(Auth_Create_User(user))
+user = {
+    "username": "demo_users",
+    "email": "demo@gmail.com",
+    "password": "demo_password",
+    "company": "demo_company",
+    "handle": "funtechss"
+}
+print(auth_register(user))

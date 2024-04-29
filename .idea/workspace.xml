@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit" />
+    <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
+      <change afterPath="$PROJECT_DIR$/decoders/smtp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/operations/smtp_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/sql_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/sql_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/Auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/Auth.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,18 +32,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "iddrismystic"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;iddrismystic&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/funtechsinc/joinmyemail.git",
-    "accountId": "1371d647-f046-454b-b7b7-0a4fce051549"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/funtechsinc/joinmyemail.git&quot;,
+    &quot;accountId&quot;: &quot;1371d647-f046-454b-b7b7-0a4fce051549&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -54,9 +60,10 @@
     "Python.TimeStamp.executor": "Run",
     "Python.connection.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.smtp_server.executor": "Run",
     "Python.sql_model.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/@Python/Subscribe to my mail",
     "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog"
   }
@@ -66,7 +73,7 @@
       <recent name="D:\@Python\Subscribe to my mail" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Auth">
+  <component name="RunManager">
     <configuration name="Auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Subscribe to my mail" />
       <option name="ENV_FILES" value="" />
