@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
-      <change afterPath="$PROJECT_DIR$/decoders/templates.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/operations/templates.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decoders/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/subscriptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decoders/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/TimeStamp.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/TimeStamp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/defaults.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/defaults.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/sql_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/sql_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/Auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

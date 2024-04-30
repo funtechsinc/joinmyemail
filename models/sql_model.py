@@ -17,6 +17,9 @@ class UserTable(SQLBASE):
     title = Column(String)
     sub_title = Column(String)
     category = Column(String)
+    youtube = Column(String)
+    instagram = Column(String)
+    x = Column(String)
     timestamp = Column(String, default=Get_Time_Stamp())
 
     def __init__(self, username, email, password, company, handle):
@@ -53,13 +56,15 @@ class SubscriptionTable(SQLBASE):
     uuid = Column(Integer, ForeignKey('users.uuid'))
     display_name = Column(String)
     email = Column(String, unique=True)
+    country = Column(String),
     subscription_hash = Column(String, unique=True)
     timestamp = Column(String, default=Get_Time_Stamp())
 
-    def __init__(self,  uuid, display_name, email, subscription_hash):
+    def __init__(self,  uuid, display_name, email, country, subscription_hash):
         self.uuid = uuid
         self.display_name = display_name
         self.email = email
+        self.country = country
         self.subscription_hash = subscription_hash
 
 

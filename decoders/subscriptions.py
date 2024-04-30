@@ -6,6 +6,7 @@ def decode_sub(doc: {}) -> dict:
         'subscription_id': doc.subscription_id,
         'display_name': doc.display_name,
         'email': doc.email,
+        'country': doc.country,
         'analytics': generate_analytics(doc.timestamp)
     }
 

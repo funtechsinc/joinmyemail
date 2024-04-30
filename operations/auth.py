@@ -92,6 +92,13 @@ def auth_update_profile(doc: dict) -> dict:
             result.sub_title = doc["sub_title"]
         if 'category' in doc:
             result.category = doc["category"]
+        if 'youtube' in doc:
+            result.youtube = doc["youtube"]
+        if 'instagram' in doc:
+            result.instagram = doc["instagram"]
+        if 'x' in doc:
+            result.x = doc["x"]
+
         db_session.commit()
         return {
             'status': 'ok',
