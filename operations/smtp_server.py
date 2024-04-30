@@ -59,7 +59,7 @@ def get_all_smtp(uuid: int) -> dict:
                 'status': 'ok',
                 'message': 'no records',
                 'docs': [],
-                'len':0
+                'len': 0
             }
 
     except Exception as e:
@@ -128,7 +128,7 @@ def delete_smtp(smtp_id:int) -> dict:
 
 # print(update_smtp({'smtp_id': 1, 'name': 'This is the new name'}))
 
-# print(get_all_smtp(1))
+print(get_all_smtp(1))
 
 # new_smtp= {
 #     'uuid': 1,
