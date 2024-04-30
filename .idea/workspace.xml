@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
-      <change afterPath="$PROJECT_DIR$/decoders/subscriptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions/defaults.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/operations/subscriptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/decoders/templates.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/operations/templates.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/smtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/smtp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/TimeStamp.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/TimeStamp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/sql_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/sql_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/smtp_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/smtp_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/Auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +64,7 @@
     "Python.smtp_server.executor": "Run",
     "Python.sql_model.executor": "Run",
     "Python.subscriptions.executor": "Run",
+    "Python.templates.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/@Python/Subscribe to my mail",
@@ -79,7 +77,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Subscribe to my mail" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,7 +90,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/operations/Auth.py" />
+      <option name="SCRIPT_NAME" value="D:\@Python\Subscribe to my mail\operations\auth.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -192,7 +190,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.smtp_server" />
-        <item itemvalue="Python.Auth" />
+        <item itemvalue="Python.auth" />
         <item itemvalue="Python.sql_model" />
         <item itemvalue="Python.connection" />
       </list>

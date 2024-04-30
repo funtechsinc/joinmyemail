@@ -29,8 +29,5 @@ def generate_analytics(timestamp: str) -> dict:
         'full_date_in_words': full_date_words,
         'full_date_in_numbers': full_date_numbers,
         'time': time,
-        'year': year,
-        'day': day,
-        'month_in_words': month_in_words,
-        'month_in_number': month_number
+        'timestamp': timestamp
     }

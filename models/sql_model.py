@@ -63,6 +63,23 @@ class SubscriptionTable(SQLBASE):
         self.subscription_hash = subscription_hash
 
 
+# templates
+class TemplatesTable(SQLBASE):
+    __tablename__ = 'templates'
+    template_id = Column(Integer, primary_key=True, autoincrement=True)
+    uuid = Column(Integer, ForeignKey('users.uuid'))
+    template_name = Column(String)
+    body = Column(String)
+    timestamp = Column(String, default=Get_Time_Stamp())
+
+    def __init__(self,uuid , template_name, body):
+        self.uuid = uuid
+        self.template_name = template_name
+        self.body = body
+
+
+
+
 
 
 
