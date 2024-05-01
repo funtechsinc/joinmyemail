@@ -1,6 +1,7 @@
 from connection import db_session
 from models.sql_model import SmtpTable
-from decoders.smtp import  decode_smtps
+from decoders.smtp import decode_smtps, decode_smtp
+
 
 # create a smtp service
 def create_smtp_server(doc: dict) -> dict:
@@ -125,17 +126,39 @@ def delete_smtp(smtp_id:int) -> dict:
         }
 
 
+# get server
+def get_smtp(smtp_id: int) -> dict:
+    try:
+        res = db_session.query(SmtpTable).filter(SmtpTable.smtp_id == smtp_id).one_or_none()
+        if res is not None:
+            return {
+                'status': 'ok',
+                'message': f'smtp gotten',
+                'doc': decode_smtp(res)
+            }
+        else:
+            return{
+                'status': 'error',
+                'message': 'smtp service not found'
+            }
+    except Exception as e:
+        return {
+            'status': 'error',
+            'message': str(e)
+        }
+
+
 
 # print(update_smtp({'smtp_id': 1, 'name': 'This is the new name'}))
 
-print(get_all_smtp(1))
+# print(get_smtp(1))
 
-# new_smtp= {
+# new_smtp = {
 #     'uuid': 1,
-#     'server': 'smtp.example.com',
-#     'name': 'John Doe',
-#     'smtp_email': 'johndoee@example.com',
-#     'smtp_password': 'secretpassword'
+#     'server': 'smtp.gmail.com',
+#     'name': 'Youtube Gmail Messages',
+#     'smtp_email': 'mail.funtechs@gmail.com',
+#     'smtp_password': 'socmlttuexphktdt'
 # }
 #
 # print(create_smtp_server(new_smtp))

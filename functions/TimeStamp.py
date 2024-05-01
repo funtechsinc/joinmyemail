@@ -7,7 +7,7 @@ def Get_Time_Stamp() -> str:
     return str(timestamp)
 
 
-def generate_analytics(timestamp: str) -> dict:
+def generate_analytics(timestamp: str, get_full_analytics: bool or None) -> dict:
     # Convert timestamp string to datetime object
     dt_object = datetime.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f")
 
@@ -26,9 +26,20 @@ def generate_analytics(timestamp: str) -> dict:
     # Get month in words
     month_in_words = dt_object.strftime("%B")
 
-    return {
+    analytics = {
+        'full_date_in_words': full_date_words,
+        'full_date_in_numbers': full_date_numbers,
+        'time': time,
+        'timestamp': timestamp,
+        'year': year,
+        'month_number': month_number,
+        'day': day,
+        'month_in_words': month_in_words
+    } if get_full_analytics else {
         'full_date_in_words': full_date_words,
         'full_date_in_numbers': full_date_numbers,
         'time': time,
         'timestamp': timestamp
     }
+
+    return analytics

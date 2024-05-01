@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
+      <change afterPath="$PROJECT_DIR$/decoders/campaigns.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/functions/send_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/operations/campaign.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decoders/smtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/smtp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/decoders/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/subscriptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decoders/templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/templates.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/TimeStamp.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/TimeStamp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/defaults.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/defaults.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/sql_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/sql_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/operations/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/smtp_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/smtp_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/subscriptions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +67,12 @@
     "Python.Auth.executor": "Run",
     "Python.Generate_Hash.executor": "Run",
     "Python.TimeStamp.executor": "Run",
+    "Python.auth.executor": "Run",
+    "Python.campaign.executor": "Run",
     "Python.connection.executor": "Run",
     "Python.defaults.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.send_email.executor": "Run",
     "Python.smtp_server.executor": "Run",
     "Python.sql_model.executor": "Run",
     "Python.subscriptions.executor": "Run",
@@ -93,6 +103,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="D:\@Python\Subscribe to my mail\operations\auth.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="campaign" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Subscribe to my mail" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/operations" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/operations/campaign.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -191,6 +223,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.campaign" />
         <item itemvalue="Python.smtp_server" />
         <item itemvalue="Python.auth" />
         <item itemvalue="Python.sql_model" />

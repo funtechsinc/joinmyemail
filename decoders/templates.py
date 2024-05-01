@@ -6,7 +6,7 @@ def decode_template(doc: {}) -> dict:
         'template_id': doc.template_id,
         'template_name': doc.template_name,
         'body': doc.body,
-        'analytics': generate_analytics(doc.timestamp)
+        'analytics': generate_analytics(doc.timestamp, False)
     }
 
 

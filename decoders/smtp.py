@@ -6,7 +6,8 @@ def decode_smtp(doc: {}) -> dict:
         'server_name': doc.name,
         'server_email': doc.smtp_email,
         'smtp_server': doc.server,
-        'analytics': generate_analytics(doc.timestamp)
+        'smtp_password': doc.smtp_password,
+        'analytics': generate_analytics(doc.timestamp, False)
     }
 
 

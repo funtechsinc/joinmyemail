@@ -48,15 +48,13 @@ def auth_register(doc: dict) -> dict:
 
             username = doc["username"]
             company = doc["company"]
-            handle = doc["handle"]
 
             # req
             req = UserTable(
                 username,
                 email,
                 hash_password,
-                company,
-                handle
+                company
             )
 
             # add and commit changes
@@ -106,21 +104,49 @@ def auth_update_profile(doc: dict) -> dict:
         }
 
 
+# update handle
+def update_handle(doc: dict) -> dict:
+    uuid = doc['uuid']
+    handle = doc['handle']
+    result = db_session.query(UserTable).filter(UserTable.handle == handle).one_or_none()
+    if result is not None:
+        return {
+            'status': 'error',
+            'message':  'handle already Exist: Try creating a unique handle' if result.uuid != uuid else '👏 Handle updated successfully',
+        }
+    else:
+        result = db_session.query(UserTable).filter(UserTable.uuid == uuid).one_or_none()
+        if result is not None:
+            result.handle = doc["handle"]
+            db_session.commit()
+            return {
+                'status': 'ok',
+                'message': '👏 Handle updated successfully',
+            }
+        else:
+            return {
+                'status': 'error',
+                'message': F'No record for Id {uuid}'
+            }
+
+
+
+# print(update_handle({'uuid': 2, 'handle': 'codewithfuntechs'}))
 # print(auth_login("demo@example.com", "demo_password"))
 
 # update = {
 #     'uuid': 1,
-#     'category': 'Marketing',
+#     'category': 'Programming',
+#     'handle': 'createwithfuntechs'
 # }
 #
 # auth_update_profile(update)
 
 
-user = {
-    "username": "demo_users",
-    "email": "demo@gmail.com",
-    "password": "demo_password",
-    "company": "demo_company",
-    "handle": "funtechss"
-}
-print(auth_register(user))
+# user = {
+#     "username": "Funtechs",
+#     "email": "funtechs45@gmail.com",
+#     "password": "admin",
+#     "company": "Create With Funtechs",
+# }
+# print(auth_register(user))

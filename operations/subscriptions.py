@@ -2,7 +2,7 @@ from models.sql_model import SubscriptionTable
 from connection import db_session
 from functions.defaults import  is_email_valid
 from functions.Generate_Hash import hash_function
-from decoders.subscriptions import decode_subs
+from decoders.subscriptions import decode_subs, decode_only_emails
 
 
 # user subscribe
@@ -10,10 +10,11 @@ def new_subscription(doc: {}) -> {}:
     try:
         uuid = doc['uuid']
         email = doc["email"]
+        country = doc['country']
         display_name = doc["display_name"]
         subscription_hash = hash_function(email)
 
-        req = SubscriptionTable(uuid, display_name, email, subscription_hash)
+        req = SubscriptionTable(uuid, display_name, email, country, subscription_hash)
 
         if is_email_valid(email):
             res = db_session.query(SubscriptionTable).filter(SubscriptionTable.email == email).one_or_none()
@@ -81,12 +82,31 @@ def all_subscribers(uuid: str) -> list or dict:
         }
 
 
+# get all subscribers emails
+def all_subscribers_emails(uuid: str) -> list or dict:
+    res = db_session.query(SubscriptionTable).filter(SubscriptionTable.uuid == uuid).all()
+    if len(res) > 0:
+        docs = decode_only_emails(res)
+        return {
+            'status': 'ok',
+            'message': f'subscriptions gotten for {uuid}',
+            'docs': docs,
+            'len': len(docs)
+        }
+    else:
+        return {
+            'status': 'ok',
+            'message': 'no records',
+            'docs': [],
+            'len': 0
+        }
 
 
-
+#
 # print(
-#     new_subscription({'uuid': 1, 'email': 'abdulwahabiddris08@gmail.com', 'display_name': 'Iddris Abdul Wahab'})
+#     new_subscription(
+#         {'uuid': 1, 'email': 'islam6@example.com', 'display_name': 'Islam', 'country': 'USA'}
+#      )
 # )
-
 
 # print(all_subscribers(1))
