@@ -141,4 +141,4 @@ def all_templates(uuid) -> dict:
 # print(delete_template(3))
 
 # print(all_templates(1))
-print(one_template(2))
+# print(one_template(2))

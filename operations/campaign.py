@@ -25,7 +25,8 @@ def create_campaign(doc: dict) -> dict:
         subscribers = all_subscribers_emails(uuid)
         subscribers = subscribers['docs']
         number_of_subscribers_reach = len(subscribers)
-        res = send_emails(subscribers, smtp_email, smtp_password, smtp_server, subject, body)
+
+        res = send_emails(subscribers, smtp_server, smtp_email, smtp_password, subject, body)
 
         if res['status'] == 'ok':
             req = CampaignTable(
@@ -35,9 +36,7 @@ def create_campaign(doc: dict) -> dict:
                 server,
                 number_of_subscribers_reach,
                 res['success'],
-                res['errors']
-            )
-
+                res['errors'])
             db_session.add(req)
             db_session.commit()
             return res
@@ -70,11 +69,12 @@ def user_campaigns(uuid: int) -> dict:
             'len': 0
         }
 
+
 print(create_campaign({
     'uuid': 1,
     'server_id': 1,
-    'subject': 'AI is Changing Web Dev',
-    'body': '<h1>Hi Iddris Abdul Wahab </h1> This is a simple demo email sent sksk to any user who just read this, leave it as it should be and dont try.'
+    'subject': 'Devin is changing everything',
+    'body': '<h1>Hi Devin Here </h1> This is a simple demo email sent.'
 })
 )
 

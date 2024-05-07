@@ -5,20 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
-      <change afterPath="$PROJECT_DIR$/decoders/campaigns.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions/send_email.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/operations/campaign.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/all_routes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/decoders/analytics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/pydantic_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/operations/analytics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/entry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/google.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/smtp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/connection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/smtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/smtp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/subscriptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/templates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/TimeStamp.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/TimeStamp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/defaults.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/defaults.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decoders/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/send_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/send_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/sql_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/sql_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/operations/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/campaign.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/campaign.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/operations/smtp_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/smtp_server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/operations/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/subscriptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/templates.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,30 +67,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Auth.executor": "Run",
-    "Python.Generate_Hash.executor": "Run",
-    "Python.TimeStamp.executor": "Run",
-    "Python.auth.executor": "Run",
-    "Python.campaign.executor": "Run",
-    "Python.connection.executor": "Run",
-    "Python.defaults.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.send_email.executor": "Run",
-    "Python.smtp_server.executor": "Run",
-    "Python.sql_model.executor": "Run",
-    "Python.subscriptions.executor": "Run",
-    "Python.templates.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/@Python/Subscribe to my mail",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Auth.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Generate_Hash.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TimeStamp.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analytics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.auth.executor&quot;: &quot;Run&quot;,
+    &quot;Python.campaign.executor&quot;: &quot;Run&quot;,
+    &quot;Python.connection.executor&quot;: &quot;Run&quot;,
+    &quot;Python.defaults.executor&quot;: &quot;Run&quot;,
+    &quot;Python.google.executor&quot;: &quot;Run&quot;,
+    &quot;Python.google_auth.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.send_email.executor&quot;: &quot;Run&quot;,
+    &quot;Python.smtp_server.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sql_model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.subscriptions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.templates.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/@projects/HR&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\@Python\Subscribe to my mail" />
+      <recent name="D:\@Python\Subscribe to my mail\routes" />
     </key>
   </component>
   <component name="RunManager">

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey, Boolean
 from functions.TimeStamp import Get_Time_Stamp, generate_analytics
 from sqlalchemy.orm import declarative_base
 
@@ -8,32 +8,38 @@ SQLBASE = declarative_base()
 #  users
 class UserTable(SQLBASE):
     __tablename__: str = 'users'
-    uuid = Column(Integer, primary_key=True, autoincrement=True)
+    uuid = Column(String, primary_key=True)
     username = Column(String)
     email = Column(String, unique=True)
-    password = Column(String)
     handle = Column(String, unique=True)
     company = Column(String)
+    photo_url = Column(String)
+    verified_email = Column(Boolean)
+    gmail_access_token = Column(String)
     title = Column(String)
     sub_title = Column(String)
     category = Column(String)
     youtube = Column(String)
     instagram = Column(String)
     x = Column(String)
+    welcome_message = Column(String)
+    smtp_for_welcome_message = Column(Integer)
     timestamp = Column(String, default=Get_Time_Stamp())
 
-    def __init__(self, username, email, password, company):
+    def __init__(self, uuid, username, email, verified_email, gmail_access_token, photo_url):
+        self.uuid = uuid
         self.username = username
         self.email = email
-        self.password = password
-        self.company = company
+        self.verified_email = verified_email
+        self.gmail_access_token = gmail_access_token
+        self.photo_url = photo_url
 
 
 #  smtp server
 class SmtpTable(SQLBASE):
     __tablename__ = 'smtp'
     smtp_id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
-    uuid = Column(Integer, ForeignKey('users.uuid'))
+    uuid = Column(String, ForeignKey('users.uuid'))
     server = Column(String)
     name = Column(String)
     smtp_email = Column(String)
@@ -51,13 +57,17 @@ class SmtpTable(SQLBASE):
 # subscriptions
 class SubscriptionTable(SQLBASE):
     __tablename__ = 'subscriptions'
+    analyst = generate_analytics(Get_Time_Stamp(), True)
     subscription_id = Column(Integer, primary_key=True, autoincrement=True)
-    uuid = Column(Integer, ForeignKey('users.uuid'))
+    uuid = Column(String, ForeignKey('users.uuid'))
     display_name = Column(String)
     email = Column(String, unique=True)
     country = Column(String)
     subscription_hash = Column(String, unique=True)
-    timestamp = Column(String, default=Get_Time_Stamp())
+    timestamp = Column(String, default=analyst['timestamp'])
+    year = Column(Integer, default=analyst['year'])
+    day = Column(Integer, default=analyst['day'])
+    month_number = Column(Integer, default=analyst['month_number'])
 
     def __init__(self, uuid, display_name, email, country, subscription_hash):
         self.uuid = uuid
@@ -71,7 +81,7 @@ class SubscriptionTable(SQLBASE):
 class TemplatesTable(SQLBASE):
     __tablename__ = 'templates'
     template_id = Column(Integer, primary_key=True, autoincrement=True)
-    uuid = Column(Integer, ForeignKey('users.uuid'))
+    uuid = Column(String, ForeignKey('users.uuid'))
     template_name = Column(String)
     body = Column(String)
     timestamp = Column(String, default=Get_Time_Stamp())
@@ -89,7 +99,7 @@ class CampaignTable(SQLBASE):
     analyst = generate_analytics(Get_Time_Stamp(), True)
 
     campaign_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
-    uuid = Column(Integer, ForeignKey('users.uuid'))
+    uuid = Column(String, ForeignKey('users.uuid'))
     smtp_id = Column(Integer, ForeignKey('smtp.smtp_id'))
     subject = Column(String)
     body = Column(String)

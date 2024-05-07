@@ -44,7 +44,7 @@ def create_smtp_server(doc: dict) -> dict:
 
 
 # getting all services for a user
-def get_all_smtp(uuid: int) -> dict:
+def get_all_smtp(uuid: str) -> dict:
     try:
         res = db_session.query(SmtpTable).filter(SmtpTable.uuid == uuid).all()
         if len(res) > 0:
@@ -71,9 +71,8 @@ def get_all_smtp(uuid: int) -> dict:
 
 
 # update smtp
-def update_smtp(doc: dict) -> dict:
+def update_smtp(doc: dict, smtp_id: int) -> dict:
     try:
-        smtp_id = doc['smtp_id']
         res = db_session.query(SmtpTable).filter(SmtpTable.smtp_id == smtp_id).one_or_none()
 
         if res is None:
@@ -148,13 +147,15 @@ def get_smtp(smtp_id: int) -> dict:
         }
 
 
+print(get_all_smtp('107239095561327300729'))
+
 
 # print(update_smtp({'smtp_id': 1, 'name': 'This is the new name'}))
 
 # print(get_smtp(1))
 
 # new_smtp = {
-#     'uuid': 1,
+#     'uuid': '107239095561327300729',
 #     'server': 'smtp.gmail.com',
 #     'name': 'Youtube Gmail Messages',
 #     'smtp_email': 'mail.funtechs@gmail.com',
