@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
-      <change afterPath="$PROJECT_DIR$/routes/analytics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/profile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/subscription.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/templates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/connection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/smtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/smtp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/subscriptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decoders/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/send_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/send_email.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/pydantic_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/pydantic_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/sql_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/sql_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/analytics.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/analytics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/campaign.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/campaign.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/smtp_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/smtp_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/subscriptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operations/templates.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/templates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/google.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/google.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/smtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/smtp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
