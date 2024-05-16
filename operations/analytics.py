@@ -16,6 +16,7 @@ def get_yearly_subs(year: int, uuid) -> dict:
             'docs': docs
         }
     except Exception as e:
+        db_session.rollback()
         return {
             'status': 'error',
             'message': str(e)

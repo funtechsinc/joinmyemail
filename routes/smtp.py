@@ -8,9 +8,9 @@ smtp_routes = APIRouter()
 
 # create a server
 @smtp_routes.post(all_routes.smtp_create_server)
-async def create_smtp(doc: SmtpConfig):
+async def create_smtp(doc: SmtpConfig, uuid: str):
     doc = dict(doc)
-    res = smtp_operations.create_smtp_server(doc)
+    res = smtp_operations.create_smtp_server(doc, uuid)
     return res
 
 
@@ -24,7 +24,7 @@ async def update_smtp(doc: SmtpConfig, smtp_id: int):
 
 # get all smtp
 @smtp_routes.get(all_routes.smtp_all_servers)
-async def all_smtp(uuid: str):
+async def all_smtp(uuid: int):
     res = smtp_operations.get_all_smtp(uuid)
     return res
 

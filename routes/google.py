@@ -6,8 +6,7 @@ from google.auth.transport import requests
 import requests
 from operations.auth import auth_continue_with_google
 import all_routes
-from functions.send_email import send_emails
-
+from fastapi.responses import RedirectResponse
 
 
 google_route = APIRouter()

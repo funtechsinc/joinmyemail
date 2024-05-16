@@ -13,6 +13,7 @@ def create_campaign(doc: dict) -> dict:
         subject = doc['subject']
         body = doc['body']
         server = doc['server_id']
+        is_deployed = doc['deployed']
 
         # get the smtp
         smtp = get_smtp(server)
@@ -26,22 +27,27 @@ def create_campaign(doc: dict) -> dict:
         subscribers = subscribers['docs']
         number_of_subscribers_reach = len(subscribers)
 
-        res = send_emails(subscribers, smtp_server, smtp_email, smtp_password, subject, body)
+        not_deployed_state = {
+            'status': 'ok',
+            'message': 'Saved Successfully.',
+            'success': 0,
+            'error': 0
+        }
+        res = send_emails(subscribers, smtp_server, smtp_email, smtp_password, subject, body) if is_deployed else not_deployed_state
 
-        if res['status'] == 'ok':
-            req = CampaignTable(
-                uuid,
-                subject,
-                body,
-                server,
-                number_of_subscribers_reach,
-                res['success'],
-                res['errors'])
-            db_session.add(req)
-            db_session.commit()
-            return res
-        else:
-            return res
+        req = CampaignTable(
+            uuid,
+            subject,
+            body,
+            server,
+            number_of_subscribers_reach,
+            res['success'],
+            res['errors'],
+            is_deployed
+        )
+
+        db_session.add(req)
+        db_session.commit()
 
     except Exception as e:
         return {

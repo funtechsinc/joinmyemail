@@ -9,22 +9,22 @@ from functions.send_email import send_emails
 
 
 # user subscribe
-def new_subscription(doc: {}) -> {}:
+def new_subscription(doc: dict, handle: str) -> {}:
     try:
-        uuid = doc['uuid']
         email = doc["email"]
         country = doc['country']
         display_name = doc["display_name"]
         subscription_hash = hash_function(email)
 
+        req_user = db_session.query(UserTable).filter(UserTable.handle == handle).one_or_none()
+
         # get the smtp
-        smtp = get_smtp(1)
+        smtp = get_smtp(req_user.smtp_for_welcome_message)
         smtp = smtp['doc']
         smtp_server = smtp['smtp_server']
         smtp_email = smtp['server_email']
         smtp_password = smtp['smtp_password']
 
-        req_user = db_session.query(UserTable).filter(UserTable.uuid == uuid).one_or_none()
         welcome_message = req_user.welcome_message
         welcome_message = welcome_message if welcome_message is not None else f"""" 
        <p> Dear {display_name}, </p>
@@ -34,12 +34,10 @@ def new_subscription(doc: {}) -> {}:
        """
         subject = f' 🎉 Congratulations on Joining the {req_user.company} Community!'
 
-
-        req = SubscriptionTable(uuid, display_name, email, country, subscription_hash)
+        req = SubscriptionTable(req_user.uuid, display_name, email, country, subscription_hash)
 
         if is_email_valid(email):
             res = db_session.query(SubscriptionTable).filter(SubscriptionTable.email == email).one_or_none()
-
             if res is None:
                 db_session.add(req)
                 db_session.commit()
@@ -54,13 +52,11 @@ def new_subscription(doc: {}) -> {}:
                     'status': 'ok',
                     'message': f'{email}: already subscribed'
                 }
-
         else:
             return {
                 'status': 'error',
                 'message': 'Invalid Email!'
             }
-
     except Exception as e:
         return {
             'status': 'error',
@@ -86,7 +82,7 @@ def unsubscribe(hash_token: str) -> {}:
 
 
 # get all subscribers
-def all_subscribers(uuid: str) -> list or dict:
+def all_subscribers(uuid: int) -> list or dict:
     res = db_session.query(SubscriptionTable).filter(SubscriptionTable.uuid == uuid).all()
     if len(res) > 0:
         docs = decode_subs(res)
@@ -106,7 +102,7 @@ def all_subscribers(uuid: str) -> list or dict:
 
 
 # get all subscribers emails
-def all_subscribers_emails(uuid: str) -> list or dict:
+def all_subscribers_emails(uuid: int) -> list or dict:
     res = db_session.query(SubscriptionTable).filter(SubscriptionTable.uuid == uuid).all()
     if len(res) > 0:
         docs = decode_only_emails(res)
@@ -123,8 +119,6 @@ def all_subscribers_emails(uuid: str) -> list or dict:
             'docs': [],
             'len': 0
         }
-
-
 
 
 # print(

@@ -4,65 +4,111 @@ from models.sql_model import UserTable
 from functions.Generate_Hash import verify_hash
 from decoders.user import decode_user
 import json
+import time
+
+
+# get user
+def auth_get_user(uuid: int):
+    criteria = {'uuid': uuid}
+    res = db_session.query(UserTable).filter_by(**criteria).one_or_none()
+    if res is not None:
+        return {
+            'status': 'ok',
+            'user': decode_user(res)
+        }
+    else:
+        return {
+            'status': 'error',
+            'message': f'wrong uuid for : {uuid}'
+        }
+
+
+# get user with handle
+def auth_get_user_with_handle(handle: str):
+    criteria = {'handle': handle}
+    res = db_session.query(UserTable).filter_by(**criteria).one_or_none()
+    if res is not None:
+        return {
+            'status': 'ok',
+            'user': decode_user(res)
+        }
+    else:
+        return {
+            'status': 'error',
+            'message': f'wrong uuid for : {handle}'
+        }
 
 
 # login account
-def auth_get_user(uuid: str) -> dict:
-    result = db_session.query(UserTable).filter(UserTable.uuid == uuid).one_or_none()
-    if result is None:
-       return {
+def auth_login(email: str, password: str) -> dict:
+    result = db_session.query(UserTable).filter(UserTable.email == email).one_or_none()
+    if str(result) != "None":
+        verified = verify_hash(password, result.password)
+
+        if verified:
+            return {
+                'status': 'ok',
+                'message': 'user verified',
+                'user': decode_user(result)
+            }
+        else:
+            return {
                 'status': 'error',
                 'message': 'Invalid credentials'
             }
+
     else:
         return {
-            'status': 'ok',
-            'message': 'login successfully',
-            'user': decode_user(result)
+            'status': 'error',
+            'message': 'Invalid credentials'
         }
 
 
 # create a user
-def auth_continue_with_google(doc: dict) -> dict:
-    try:
-        doc = doc
-        email = doc["email"]
-        uuid = doc["id"]
-        verified_email = doc['verified_email']
-        username = doc['name']
-        photo = doc['picture']
-        access_token = doc['access_token']
+def auth_create_account(doc: dict) -> dict:
+    doc = doc
+    email = doc["email"]
+    password = doc['password']
 
-        # check is user already exist
-        result = db_session.query(UserTable).filter(UserTable.email == email).one_or_none()
+    # check is user already exist
+    result = db_session.query(UserTable).filter(UserTable.email == email).one_or_none()
 
-        if result is None:
-            # req
-            req = UserTable(
-                uuid,
-                username,
-                email,
-                verified_email,
-                access_token,
-                photo
-            )
+    if str(result) == "None":
+        # hash password
+        hash_password = hash_function(password)
+        doc["password"] = hash_password
+        username = doc["username"]
 
-            # add and commit changes
-            db_session.add(req)
-            db_session.commit()
+        # req
+        req = UserTable(
+            username,
+            email,
+            hash_password
+        )
 
-            # login after creating an account
-            return auth_get_user(uuid)
-        else:
-            result.gmail_access_token = access_token
-            db_session.commit()
-            return auth_get_user(uuid)
+        # add and commit changes
+        db_session.add(req)
+        db_session.commit()
 
-    except Exception as e:
+        res = auth_login(email, password)
+        return res
+
+    else:
         return {
             'status': 'error',
-            'message': str(e)
+            'message': f'user already exist with email: {email}'
         }
+
+
+print(auth_login("demo@example.com", "demo_password"))
+
+# ser = {
+#     "username": "demo_user",
+#     "email": "demo@example.com",
+#     "password": "demo_password",
+#     "company": "demo_company"
+# }
+# print(Auth_Create_User(user))
 
 
 # updating profile
@@ -78,6 +124,8 @@ def auth_update_profile(doc: dict, uuid) -> dict:
             result.title = doc["title"]
         if 'sub_title' in doc:
             result.sub_title = doc["sub_title"]
+        if 'photo_url' in doc:
+            result.photo_url = doc["photo_url"]
         if 'category' in doc:
             result.category = doc["category"]
         if 'welcome_message' in doc:
@@ -97,8 +145,7 @@ def auth_update_profile(doc: dict, uuid) -> dict:
 
 
 # update handle
-def update_handle(doc: dict) -> dict:
-    uuid = doc['uuid']
+def update_handle(doc: dict, uuid: int) -> dict:
     handle = doc['handle']
     result = db_session.query(UserTable).filter(UserTable.handle == handle).one_or_none()
     if result is not None:
@@ -116,18 +163,17 @@ def update_handle(doc: dict) -> dict:
                 'message': '👏 Handle updated successfully',
             }
         else:
+            db_session.rollback()
             return {
                 'status': 'error',
                 'message': F'No record for Id {uuid}'
             }
 
 
-
-
 def auth_set_welcome_message(doc: dict, uuid) -> dict:
     uuid = uuid
     message = doc['message']
-    server = doc['server']
+    server = doc['server_id']
 
     result = db_session.query(UserTable).filter(UserTable.uuid == uuid).one_or_none()
     if str(result) != "None":
@@ -140,7 +186,7 @@ def auth_set_welcome_message(doc: dict, uuid) -> dict:
         }
 
 
-# print(auth_continue_with_google({"id":"107239095561327300729","email":"abdulwahabiddris08@gmail.com","verified_email":True,"name":"Iddris Abdul Wahab","given_name":"Iddris","family_name":"Abdul Wahab","picture":"https://lh3.googleusercontent.com/a/ACg8ocLnsCU9GKOiecIXIgadoGBmDExGcRgbppL-QC7R3eGHvbn-20Zk=s96-c","locale":"en","access_token":"ya29.a0AXooCguqLSWvOSRhg5UaRHvSz643sTHvXUrOz2ePiroSn3ePFBmIENX0zb7iiGke2icrkQ1mVFkCQ81MEMsJtaeS4NWXDhnYZtgVITnvSwNVs_yuAOtUqfx68l_7FiJGklkc8lOAS7uY1Knis7f9JYwY9XIPZtr40WekaCgYKAYgSARISFQHGX2Mi_5-cqW7JWHF9uvGZRqD24A0171"}))
+# print(auth_continue_with_google({"id":"107239095561327300729","email":"abdulwahabiddris08@gmail.com","verified_email":False,"name":"Iddris Abdul Wahab","given_name":"Iddris","family_name":"Abdul Wahab","picture":"https://lh3.googleusercontent.com/a/ACg8ocLnsCU9GKOiecIXIgadoGBmDExGcRgbppL-QC7R3eGHvbn-20Zk=s96-c","locale":"en","access_token":"ya29.a0AXooCgtMGeyZQlpDgkkCPXhppQRdyyKRiJPTBCigY4JcHz3UdxBlhgB61Oyyx2ytrquv4QpUsuOYwReC_zWXrPtUDjm5VravBxcyZA3qDIE9Gq49PzqxEIGr6-bNeqx4kX3jrGzwjkfXMXgchtfaG1_gmPYUEQRZZO1EaCgYKAWsSARISFQHGX2Mivr05vG4k2ZshC-kBiD77fA0171"}))
 # print(update_handle({'uuid': '107239095561327300729', 'handle': 'codewithfuntechs'}))
 # print(auth_set_welcome_message({'message': 'Hello, welcome to my new email list', 'server': 1} , '107239095561327300729'))
 

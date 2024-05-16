@@ -4,8 +4,7 @@ from decoders.smtp import decode_smtps, decode_smtp
 
 
 # create a smtp service
-def create_smtp_server(doc: dict) -> dict:
-    uuid = doc['uuid']
+def create_smtp_server(doc: dict, uuid) -> dict:
     server = doc['server']
     name = doc['name']
     smtp_email = doc['smtp_email']
@@ -37,6 +36,7 @@ def create_smtp_server(doc: dict) -> dict:
             }
 
     except Exception as e:
+        db_session.rollback()
         return {
             'status': 'error',
             'message': str(e)
@@ -44,7 +44,7 @@ def create_smtp_server(doc: dict) -> dict:
 
 
 # getting all services for a user
-def get_all_smtp(uuid: str) -> dict:
+def get_all_smtp(uuid: int) -> dict:
     try:
         res = db_session.query(SmtpTable).filter(SmtpTable.uuid == uuid).all()
         if len(res) > 0:
@@ -64,6 +64,7 @@ def get_all_smtp(uuid: str) -> dict:
             }
 
     except Exception as e:
+        db_session.rollback()
         return {
             'status': 'error',
             'message': str(e)
@@ -96,6 +97,7 @@ def update_smtp(doc: dict, smtp_id: int) -> dict:
                 'message': 'smtp service updated',
             }
     except Exception as e:
+        db_session.rollback()
         return {
             'status': 'error',
             'message': str(e)
@@ -119,6 +121,7 @@ def delete_smtp(smtp_id:int) -> dict:
                 'message': 'smtp service not found'
             }
     except Exception as e:
+        db_session.rollback()
         return {
             'status': 'error',
             'message': str(e)
@@ -141,13 +144,14 @@ def get_smtp(smtp_id: int) -> dict:
                 'message': 'smtp service not found'
             }
     except Exception as e:
+        db_session.rollback()
         return {
             'status': 'error',
             'message': str(e)
         }
 
 
-print(get_all_smtp('107239095561327300729'))
+# print(get_all_smtp(8))
 
 
 # print(update_smtp({'smtp_id': 1, 'name': 'This is the new name'}))

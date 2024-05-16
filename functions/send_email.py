@@ -26,7 +26,7 @@ def send_emails(emails: list, server: str, sender: str, access_password: str, su
         html_body = body
 
         for to_email in receivers:
-            msg = MIMEText(html_body, "html")
+            msg = MIMEText(html_body.replace('{{email}}', to_email), "html")
             msg["From"] = from_email
             msg["To"] = to_email
             msg["Subject"] = subject

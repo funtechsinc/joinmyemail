@@ -3,6 +3,7 @@ from functions.TimeStamp import generate_analytics
 
 def decode_smtp(doc: {}) -> dict:
     return {
+        'server_id': doc.smtp_id,
         'server_name': doc.name,
         'server_email': doc.smtp_email,
         'smtp_server': doc.server,

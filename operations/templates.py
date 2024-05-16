@@ -4,9 +4,8 @@ from connection import db_session
 
 
 # new template
-def create_template(doc: dict) -> dict:
+def create_template(doc: dict, uuid) -> dict:
     try:
-        uuid = doc['uuid']
         template_name = doc['template_name']
         body = doc['body']
 
@@ -25,10 +24,8 @@ def create_template(doc: dict) -> dict:
         }
 
 
-def edit_template(doc) -> dict:
+def edit_template(doc, template_id) -> dict:
     try:
-        template_id = doc['template_id']
-
         res = db_session.query(TemplatesTable).filter(TemplatesTable.template_id == template_id).one_or_none()
         if res is not None:
             if 'template_name' in doc:

@@ -8,14 +8,13 @@ SQLBASE = declarative_base()
 #  users
 class UserTable(SQLBASE):
     __tablename__: str = 'users'
-    uuid = Column(String, primary_key=True)
+    uuid = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String)
     email = Column(String, unique=True)
+    password = Column(String, unique=True)
     handle = Column(String, unique=True)
     company = Column(String)
     photo_url = Column(String)
-    verified_email = Column(Boolean)
-    gmail_access_token = Column(String)
     title = Column(String)
     sub_title = Column(String)
     category = Column(String)
@@ -26,20 +25,17 @@ class UserTable(SQLBASE):
     smtp_for_welcome_message = Column(Integer)
     timestamp = Column(String, default=Get_Time_Stamp())
 
-    def __init__(self, uuid, username, email, verified_email, gmail_access_token, photo_url):
-        self.uuid = uuid
+    def __init__(self,  username, email, password):
         self.username = username
         self.email = email
-        self.verified_email = verified_email
-        self.gmail_access_token = gmail_access_token
-        self.photo_url = photo_url
+        self.password = password
 
 
 #  smtp server
 class SmtpTable(SQLBASE):
     __tablename__ = 'smtp'
     smtp_id = Column(Integer, primary_key=True, autoincrement=True, unique=True)
-    uuid = Column(String, ForeignKey('users.uuid'))
+    uuid = Column(Integer, ForeignKey('users.uuid'))
     server = Column(String)
     name = Column(String)
     smtp_email = Column(String)
@@ -59,7 +55,7 @@ class SubscriptionTable(SQLBASE):
     __tablename__ = 'subscriptions'
     analyst = generate_analytics(Get_Time_Stamp(), True)
     subscription_id = Column(Integer, primary_key=True, autoincrement=True)
-    uuid = Column(String, ForeignKey('users.uuid'))
+    uuid = Column(Integer, ForeignKey('users.uuid'))
     display_name = Column(String)
     email = Column(String, unique=True)
     country = Column(String)
@@ -81,7 +77,7 @@ class SubscriptionTable(SQLBASE):
 class TemplatesTable(SQLBASE):
     __tablename__ = 'templates'
     template_id = Column(Integer, primary_key=True, autoincrement=True)
-    uuid = Column(String, ForeignKey('users.uuid'))
+    uuid = Column(Integer, ForeignKey('users.uuid'))
     template_name = Column(String)
     body = Column(String)
     timestamp = Column(String, default=Get_Time_Stamp())
@@ -99,19 +95,20 @@ class CampaignTable(SQLBASE):
     analyst = generate_analytics(Get_Time_Stamp(), True)
 
     campaign_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
-    uuid = Column(String, ForeignKey('users.uuid'))
+    uuid = Column(Integer, ForeignKey('users.uuid'))
     smtp_id = Column(Integer, ForeignKey('smtp.smtp_id'))
     subject = Column(String)
     body = Column(String)
     number_of_subscribers_reach = Column(Integer)
     success = Column(Integer)
     errors = Column(Integer)
+    deployed = Column(Boolean)
     timestamp = Column(String, default=analyst['timestamp'])
     year = Column(Integer, default=analyst['year'])
     day = Column(Integer, default=analyst['day'])
     month_number = Column(Integer, default=analyst['month_number'])
 
-    def __init__(self, uuid, subject, body, smtp_id, number_of_subscribers_reach, success, errors):
+    def __init__(self, uuid, subject, body, smtp_id, number_of_subscribers_reach, success, errors, deployed):
         self.uuid = uuid
         self.subject = subject
         self.body = body
@@ -119,4 +116,5 @@ class CampaignTable(SQLBASE):
         self.number_of_subscribers_reach = number_of_subscribers_reach
         self.success = success
         self.errors = errors
+        self.deployed = deployed
 
