@@ -7,10 +7,11 @@ import os
 load_dotenv('.env')
 user: str = os.getenv('USER')
 password: str = os.getenv('PASSWORD')
+db_host: str = os.getenv('DB_HOST')
+db_port: str = os.getenv('DB_PORT')
 
 # # uri = 'postgresql://postgres:admin@localhost:5432/SubscribeToMyEmailList'
-postgres_uri = (F'postgresql://{user}:{password}@subscribe-to-my-email-list-funtechs-inc.h.aivencloud'
-                '.com:12550/defaultdb?sslmode=require')
+postgres_uri = (F'postgresql://{user}:{password}@{db_host}:{db_port}/defaultdb?sslmode=require')
 # uri = 'sqlite:///SubscribeToMyEmail.db'
 engine = create_engine(postgres_uri, pool_size=10, max_overflow=20)
 
