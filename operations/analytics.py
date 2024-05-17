@@ -5,7 +5,7 @@ from sqlalchemy import extract
 
 
 # get year subscriptions
-def get_yearly_subs(year: int, uuid) -> dict:
+def get_yearly_subs(year: int, uuid: int) -> dict:
     try:
         criteria = {'uuid': uuid, 'year': year}
         res = db_session.query(SubscriptionTable).filter_by(**criteria).all()
@@ -24,7 +24,7 @@ def get_yearly_subs(year: int, uuid) -> dict:
 
 
 # get year campaigns
-def get_yearly_campaigns(year: int, uuid) -> dict:
+def get_yearly_campaigns(year: int, uuid: int) -> dict:
     try:
         criteria = {'uuid': uuid, 'year': year}
         res = db_session.query(CampaignTable).filter_by(**criteria).all()
@@ -41,4 +41,4 @@ def get_yearly_campaigns(year: int, uuid) -> dict:
         }
 
 # print(get_yearly_subs(2024, 1))
-print(get_yearly_campaigns(2024, 1))
+# print(get_yearly_campaigns(2024, 1))

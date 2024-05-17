@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from routes.entry import entry_route
 from routes.smtp import smtp_routes
 from routes.auth import auth_route
-from routes.email import email_route
 from routes.profile import profile_route
 from routes.templates import templates_routes
 from routes.subscription import subscription_route
@@ -24,7 +23,6 @@ app.add_middleware(
 app.include_router(entry_route)
 app.include_router(smtp_routes)
 app.include_router(auth_route)
-app.include_router(email_route)
 app.include_router(templates_routes)
 app.include_router(profile_route)
 app.include_router(subscription_route)

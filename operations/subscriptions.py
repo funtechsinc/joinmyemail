@@ -11,28 +11,22 @@ from functions.send_email import send_emails
 # user subscribe
 def new_subscription(doc: dict, handle: str) -> {}:
     try:
+        print(doc)
         email = doc["email"]
         country = doc['country']
         display_name = doc["display_name"]
         subscription_hash = hash_function(email)
 
         req_user = db_session.query(UserTable).filter(UserTable.handle == handle).one_or_none()
+        welcome_message = req_user.welcome_message
+        welcome_message_subject = req_user.welcome_message_subject
 
         # get the smtp
-        smtp = get_smtp(req_user.smtp_for_welcome_message)
-        smtp = smtp['doc']
-        smtp_server = smtp['smtp_server']
-        smtp_email = smtp['server_email']
-        smtp_password = smtp['smtp_password']
-
-        welcome_message = req_user.welcome_message
-        welcome_message = welcome_message if welcome_message is not None else f"""" 
-       <p> Dear {display_name}, </p>
-      <div>I hope this message finds you well!</div>
-      I wanted to take a moment to extend a warm and heartfelt congratulations on subscribing to our email list. 
-      🎉 Your decision to join us means a lot, and we're thrilled to welcome you into our exclusive community.
-       """
-        subject = f' 🎉 Congratulations on Joining the {req_user.company} Community!'
+        smtp = get_smtp(req_user.smtp_for_welcome_message) if welcome_message is not None else None
+        smtp = smtp['doc'] if welcome_message is not None else None
+        smtp_server = smtp['smtp_server'] if welcome_message is not None else None
+        smtp_email = smtp['server_email'] if welcome_message is not None else None
+        smtp_password = smtp['smtp_password'] if welcome_message is not None else None
 
         req = SubscriptionTable(req_user.uuid, display_name, email, country, subscription_hash)
 
@@ -41,8 +35,10 @@ def new_subscription(doc: dict, handle: str) -> {}:
             if res is None:
                 db_session.add(req)
                 db_session.commit()
-                # send a notification email to user
-                send_emails([email], smtp_server, smtp_email, smtp_password, subject, welcome_message)
+                if welcome_message is not None:
+                    # send a notification email to user
+                    send_emails([email], smtp_server, smtp_email, smtp_password, welcome_message_subject,
+                                welcome_message)
                 return {
                     'status': 'ok',
                     'message': f'👏 Thanks for subscribing {display_name}'

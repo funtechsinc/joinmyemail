@@ -130,6 +130,10 @@ def auth_update_profile(doc: dict, uuid) -> dict:
             result.category = doc["category"]
         if 'welcome_message' in doc:
             result.welcome_message = doc["welcome_message"]
+        if 'welcome_message_subject' in doc:
+            result.welcome_message_subject = doc["welcome_message_subject"]
+        if 'call_to_action' in doc:
+            result.call_to_action = doc["call_to_action"]
         if 'youtube' in doc:
             result.youtube = doc["youtube"]
         if 'instagram' in doc:
@@ -173,11 +177,13 @@ def update_handle(doc: dict, uuid: int) -> dict:
 def auth_set_welcome_message(doc: dict, uuid) -> dict:
     uuid = uuid
     message = doc['message']
+    welcome_message_subject = doc['welcome_message_subject']
     server = doc['server_id']
 
     result = db_session.query(UserTable).filter(UserTable.uuid == uuid).one_or_none()
     if str(result) != "None":
         result.welcome_message = message
+        result.welcome_message_subject = welcome_message_subject
         result.smtp_for_welcome_message = server
         db_session.commit()
         return {

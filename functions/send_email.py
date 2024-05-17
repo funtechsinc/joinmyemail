@@ -1,7 +1,7 @@
 import smtplib
 from email.mime.text import MIMEText
 import json
-
+from functions.template_layout import template_layout
 
 def send_emails(emails: list, server: str, sender: str, access_password: str, subject: str, body: str) -> dict:
     try:
@@ -23,7 +23,7 @@ def send_emails(emails: list, server: str, sender: str, access_password: str, su
         server.login(gmail_user, gmail_password)
         from_email = gmail_user
 
-        html_body = body
+        html_body = template_layout(body)
 
         for to_email in receivers:
             msg = MIMEText(html_body.replace('{{email}}', to_email), "html")

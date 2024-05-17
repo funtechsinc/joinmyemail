@@ -13,6 +13,8 @@ class User(BaseModel):
     instagram: str = None
     x: str = None
     welcome_message: str = None
+    welcome_message_subject: str = None
+    call_to_action: str = None
     smtp_for_welcome_message: str = None
 
 
@@ -33,6 +35,7 @@ class AuthLogin(BaseModel):
 
 class WelcomeMessage(BaseModel):
     message: str
+    welcome_message_subject: str
     server_id: int
 
 

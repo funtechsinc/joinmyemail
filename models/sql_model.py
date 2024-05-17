@@ -22,6 +22,8 @@ class UserTable(SQLBASE):
     instagram = Column(String)
     x = Column(String)
     welcome_message = Column(String)
+    welcome_message_subject = Column(String)
+    call_to_action = Column(String)
     smtp_for_welcome_message = Column(Integer)
     timestamp = Column(String, default=Get_Time_Stamp())
 
