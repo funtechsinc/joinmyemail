@@ -1,6 +1,6 @@
 def template_layout(content):
     return F""" 
-      <body style="max-width: 700px; width:100%; margin: 0; padding-top: 20pxpx; -webkit-text-size-adjust: 100%;background-color: #F1F1F1; color: #000000">
+      <body style="max-width: 700px; width:100%; margin: 0; padding:20px 30px;border-radius:20px; -webkit-text-size-adjust: 100%;background-color: #F1F1F1; color: #000000">
       {content}
       <!-- Start unsubscribe section -->
       <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 600px;" width="600">
@@ -16,7 +16,7 @@ def template_layout(content):
               </p>
 
               <p style="font-size: 12px; line-height: 12px; font-family: 'Helvetica', Arial, sans-serif; font-weight: normal; text-decoration: none; color: #919293; margin-top: 30px;">
-                Email template built by <a style="text-decoration: none; color: #919293;" href="https://fullsphere.co.uk"><u>Subscribe to my email list</u></a>
+                Email template built by <a style="text-decoration: none; color: #919293;" href="#"><u>Subscribe to my email list</u></a>
               </p>
 
             </td>
