@@ -9,6 +9,7 @@ def decode_campaign(doc: {}) -> dict:
         'number_of_subscribers_reach': doc.number_of_subscribers_reach,
         'success': doc.success,
         'errors': doc.errors,
+        'deployed': doc.deployed,
         'analytics': generate_analytics(doc.timestamp, False)
     }
 
