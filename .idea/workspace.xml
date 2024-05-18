@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit" />
+    <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
+      <change afterPath="$PROJECT_DIR$/routes/campaign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SubscribeToMyEmail.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/pydantic_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/pydantic_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/campaign.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/campaign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/subscriptions.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +89,7 @@
       <recent name="D:\@Python\Subscribe to my mail\routes" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Subscribe to my mail" />
       <option name="ENV_FILES" value="" />

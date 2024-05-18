@@ -57,11 +57,8 @@ class EmailTemplate(BaseModel):
     body: str = None
 
 
-class EmailSendingResult(BaseModel):
-    uuid: str
-    subject: str
-    body: str
-    smtp_id: str
-    number_of_subscribers_reach: int
-    success: int
-    errors: int
+class Campaign(BaseModel):
+    subject: str = None
+    body: str = None
+    smtp_id: int
+    deployed: bool = None

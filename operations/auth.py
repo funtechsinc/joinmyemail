@@ -100,17 +100,6 @@ def auth_create_account(doc: dict) -> dict:
         }
 
 
-print(auth_login("demo@example.com", "demo_password"))
-
-# ser = {
-#     "username": "demo_user",
-#     "email": "demo@example.com",
-#     "password": "demo_password",
-#     "company": "demo_company"
-# }
-# print(Auth_Create_User(user))
-
-
 # updating profile
 def auth_update_profile(doc: dict, uuid) -> dict:
     uuid = uuid
@@ -190,27 +179,3 @@ def auth_set_welcome_message(doc: dict, uuid) -> dict:
             'status': 'ok',
             'message': '''Voila! 🎉 You've just crafted a heartfelt welcome email for new subscribers. ✨''',
         }
-
-
-# print(auth_continue_with_google({"id":"107239095561327300729","email":"abdulwahabiddris08@gmail.com","verified_email":False,"name":"Iddris Abdul Wahab","given_name":"Iddris","family_name":"Abdul Wahab","picture":"https://lh3.googleusercontent.com/a/ACg8ocLnsCU9GKOiecIXIgadoGBmDExGcRgbppL-QC7R3eGHvbn-20Zk=s96-c","locale":"en","access_token":"ya29.a0AXooCgtMGeyZQlpDgkkCPXhppQRdyyKRiJPTBCigY4JcHz3UdxBlhgB61Oyyx2ytrquv4QpUsuOYwReC_zWXrPtUDjm5VravBxcyZA3qDIE9Gq49PzqxEIGr6-bNeqx4kX3jrGzwjkfXMXgchtfaG1_gmPYUEQRZZO1EaCgYKAWsSARISFQHGX2Mivr05vG4k2ZshC-kBiD77fA0171"}))
-# print(update_handle({'uuid': '107239095561327300729', 'handle': 'codewithfuntechs'}))
-# print(auth_set_welcome_message({'message': 'Hello, welcome to my new email list', 'server': 1} , '107239095561327300729'))
-
-# print(auth_login("demo@example.com", "demo_password"))
-
-# update = {
-#     'category': 'Programming',
-#     'x': 'funtechs',
-#     'welcome_message': 'Thanks for joining my email list'
-# }
-#
-# print(auth_update_profile(update, '107239095561327300729'))
-#
-
-# user = {
-#     "username": "Funtechs",
-#     "email": "funtechs45@gmail.com",
-#     "password": "admin",
-#     "company": "Create With Funtechs",
-# }
-# print(auth_register(user))

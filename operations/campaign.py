@@ -6,13 +6,17 @@ from operations.smtp_server import get_smtp
 from decoders.campaigns import decode_campaigns
 
 
+def launch_campaign(subscribers, smtp_server, smtp_email, smtp_password, subject, body):
+    res = send_emails(subscribers, smtp_server, smtp_email, smtp_password, subject, body)
+    return res
+
+
 # new campaign
-def create_campaign(doc: dict) -> dict:
+def create_campaign(doc: dict, uuid: int) -> dict:
     try:
-        uuid = doc['uuid']
         subject = doc['subject']
         body = doc['body']
-        server = doc['server_id']
+        server = doc['smtp_id']
         is_deployed = doc['deployed']
 
         # get the smtp
@@ -31,10 +35,11 @@ def create_campaign(doc: dict) -> dict:
             'status': 'ok',
             'message': 'Saved Successfully.',
             'success': 0,
-            'error': 0
+            'errors': 0
         }
-        res = send_emails(subscribers, smtp_server, smtp_email, smtp_password, subject, body) if is_deployed else not_deployed_state
-
+        res = launch_campaign(subscribers, smtp_server, smtp_email, smtp_password, subject,
+                              body) if is_deployed and number_of_subscribers_reach > 0 else not_deployed_state
+        print(res)
         req = CampaignTable(
             uuid,
             subject,
@@ -48,6 +53,8 @@ def create_campaign(doc: dict) -> dict:
 
         db_session.add(req)
         db_session.commit()
+
+        return res
 
     except Exception as e:
         return {
@@ -75,13 +82,26 @@ def user_campaigns(uuid: int) -> dict:
             'len': 0
         }
 
+# def edit_campaign(doc: dict, uuid: int) -> dict:
+#     criteria: dict = {'uuid': uuid}
+#     doc = doc
+#     res = db_session.query(CampaignTable).filter_by(criteria).one_or_none()
+#     if res is not None:
+#         if 'subject' in doc:
+#             res.subject = doc['subject']
+#         if 'body' in doc:
+#             res.body = doc['body']
+#         if 'smtp_id' in doc:
+#             res.server_id = doc['smtp_id']
 
-print(create_campaign({
-    'uuid': 1,
-    'server_id': 1,
-    'subject': 'Devin is changing everything',
-    'body': '<h1>Hi Devin Here </h1> This is a simple demo email sent.'
-})
-)
+
+#
+# print(create_campaign({
+#     'uuid': 1,
+#     'server_id': 1,
+#     'subject': 'Devin is changing everything',
+#     'body': '<h1>Hi Devin Here </h1> This is a simple demo email sent.'
+# })
+# )
 
 # print(user_campaigns(1))

@@ -11,48 +11,55 @@ from functions.send_email import send_emails
 # user subscribe
 def new_subscription(doc: dict, handle: str) -> {}:
     try:
-        print(doc)
         email = doc["email"]
         country = doc['country']
         display_name = doc["display_name"]
         subscription_hash = hash_function(email)
 
         req_user = db_session.query(UserTable).filter(UserTable.handle == handle).one_or_none()
-        welcome_message = req_user.welcome_message
-        welcome_message_subject = req_user.welcome_message_subject
 
-        # get the smtp
-        smtp = get_smtp(req_user.smtp_for_welcome_message) if welcome_message is not None else None
-        smtp = smtp['doc'] if welcome_message is not None else None
-        smtp_server = smtp['smtp_server'] if welcome_message is not None else None
-        smtp_email = smtp['server_email'] if welcome_message is not None else None
-        smtp_password = smtp['smtp_password'] if welcome_message is not None else None
+        if req_user is not None:
+            welcome_message = req_user.welcome_message
+            welcome_message_subject = req_user.welcome_message_subject
 
-        req = SubscriptionTable(req_user.uuid, display_name, email, country, subscription_hash)
+            # get the smtp
+            smtp = get_smtp(req_user.smtp_for_welcome_message) if welcome_message is not None else None
+            smtp = smtp['doc'] if welcome_message is not None else None
+            smtp_server = smtp['smtp_server'] if welcome_message is not None else None
+            smtp_email = smtp['server_email'] if welcome_message is not None else None
+            smtp_password = smtp['smtp_password'] if welcome_message is not None else None
 
-        if is_email_valid(email):
-            res = db_session.query(SubscriptionTable).filter(SubscriptionTable.email == email).one_or_none()
-            if res is None:
-                db_session.add(req)
-                db_session.commit()
-                if welcome_message is not None:
-                    # send a notification email to user
-                    send_emails([email], smtp_server, smtp_email, smtp_password, welcome_message_subject,
-                                welcome_message)
-                return {
-                    'status': 'ok',
-                    'message': f'👏 Thanks for subscribing {display_name}'
-                }
+            req = SubscriptionTable(req_user.uuid, display_name, email, country, subscription_hash)
+
+            if is_email_valid(email):
+                res = db_session.query(SubscriptionTable).filter(SubscriptionTable.email == email).one_or_none()
+                if res is None:
+                    db_session.add(req)
+                    db_session.commit()
+                    if welcome_message is not None:
+                        # send a notification email to user
+                        send_emails([email], smtp_server, smtp_email, smtp_password, welcome_message_subject,
+                                    welcome_message)
+                    return {
+                        'status': 'ok',
+                        'message': f'👏 Thanks for subscribing {display_name}'
+                    }
+                else:
+                    return {
+                        'status': 'ok',
+                        'message': f'{email}: already subscribed'
+                    }
             else:
                 return {
-                    'status': 'ok',
-                    'message': f'{email}: already subscribed'
+                    'status': 'error',
+                    'message': 'Invalid Email!'
                 }
         else:
             return {
                 'status': 'error',
-                'message': 'Invalid Email!'
+                'message': 'handle do not exist'
             }
+
     except Exception as e:
         return {
             'status': 'error',
