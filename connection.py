@@ -11,8 +11,8 @@ db_host: str = os.getenv('DB_HOST')
 db_port: str = os.getenv('DB_PORT')
 
 # uri = 'postgresql://postgres:admin@localhost:5432/SubscribeToMyEmailList'
-# postgres_uri = (F'postgresql://{user}:{password}@{db_host}:{db_port}/defaultdb?sslmode=require')
-uri = 'sqlite:///SubscribeToMyEmail.db'
+uri = F'postgresql://{user}:{password}@{db_host}:{db_port}/defaultdb?sslmode=require'
+# uri = 'sqlite:///SubscribeToMyEmail.db'
 engine = create_engine(uri, pool_size=10, max_overflow=20)
 
 # bind to create all tables
