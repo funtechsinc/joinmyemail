@@ -18,8 +18,9 @@ def decode_subs(docs: []) -> []:
 
 def decode_only_emails(docs: list) -> list:
     emails = []
+    # i am appending the username so that you can use {{username}} to grab the username
     for doc in docs:
-        emails.append(doc.email)
+        emails.append({'email': doc.email, 'username': doc.display_name})
     else:
         return emails
 

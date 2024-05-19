@@ -6,8 +6,8 @@ from operations.smtp_server import get_smtp
 from decoders.campaigns import decode_campaigns
 
 
-def launch_campaign(subscribers, smtp_server, smtp_email, smtp_password, subject, body):
-    res = send_emails(subscribers, smtp_server, smtp_email, smtp_password, subject, body)
+def launch_campaign(subscribers, smtp_server, smtp_email, uuid, smtp_password, subject, body):
+    res = send_emails(subscribers, smtp_server, smtp_email, uuid, smtp_password, subject, body)
     return res
 
 
@@ -37,9 +37,8 @@ def create_campaign(doc: dict, uuid: int) -> dict:
             'success': 0,
             'errors': 0
         }
-        res = launch_campaign(subscribers, smtp_server, smtp_email, smtp_password, subject,
+        res = launch_campaign(subscribers, smtp_server, smtp_email, uuid, smtp_password, subject,
                               body) if is_deployed and number_of_subscribers_reach > 0 else not_deployed_state
-        print(res)
         req = CampaignTable(
             uuid,
             subject,

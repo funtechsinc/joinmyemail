@@ -27,7 +27,7 @@ subscription_unsubscribe = '/unsubscribe/{hash}'
 subscription_all = '/all/subscription/{uuid}'
 
 # campaign
-campaign_create = '/create/campaign'
+campaign_create = '/create/campaign/{uuid}'
 campaign_all = '/all/campaigns/{uuid}'
 
 # analytics
