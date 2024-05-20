@@ -20,6 +20,7 @@ def send_emails(emails: list, server: str, email: str, sender_uuid: int, access_
         gmail_user = email
         gmail_password = access_password
         receivers = emails
+
         try:
             body = json.loads(body)
         except json.JSONDecodeError:
@@ -32,15 +33,12 @@ def send_emails(emails: list, server: str, email: str, sender_uuid: int, access_
 
         html_body = template_layout(body, user_sender['photo_url'], user_sender['company'], user_sender['category'],
                                     )
-
         i = 0
         errors = 0
-
         while i < len(receivers):
             try:
                 to_email = receivers[i]['email']
                 to_username = receivers[i]['username']
-
                 msg = MIMEText(html_body.replace('{{email}}', to_email).replace('{{username}}', to_username), "html")
                 msg["From"] = from_email
                 msg["To"] = to_email
@@ -60,20 +58,6 @@ def send_emails(emails: list, server: str, email: str, sender_uuid: int, access_
                 'success': success,
                 'errors': errors
             }
-
-        #
-        # for to_email in receivers:
-        #     success = 0
-        #
-        #     try:
-        #         msg = MIMEText(html_body.replace('{{email}}', to_email), "html")
-        #         msg["From"] = from_email
-        #         msg["To"] = to_email
-        #         msg["Subject"] = subject
-        #         server.sendmail(from_email, to_email, msg.as_string())
-        #
-        #
-
 
     except smtplib.SMTPException as e:
         return {

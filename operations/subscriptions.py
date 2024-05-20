@@ -38,7 +38,7 @@ def new_subscription(doc: dict, handle: str) -> {}:
                     db_session.commit()
                     if welcome_message is not None:
                         # send a notification email to user
-                        receiver: list = [email]
+                        receiver: list = [{'username': display_name, 'email': email}]
                         res_email = send_emails(receiver, smtp_server, smtp_email, req_user.uuid, smtp_password,
                                                 welcome_message_subject, welcome_message)
                         resp = {
