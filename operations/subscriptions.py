@@ -1,6 +1,6 @@
 from models.sql_model import SubscriptionTable
 from connection import db_session
-from functions.defaults import  is_email_valid
+from functions.defaults import is_email_valid
 from functions.Generate_Hash import hash_function
 from decoders.subscriptions import decode_subs, decode_only_emails
 from models.sql_model import UserTable
@@ -38,12 +38,22 @@ def new_subscription(doc: dict, handle: str) -> {}:
                     db_session.commit()
                     if welcome_message is not None:
                         # send a notification email to user
-                        send_emails([email], smtp_server, smtp_email, req_user.uuid, smtp_password,
-                                    welcome_message_subject, welcome_message)
-                    return {
-                        'status': 'ok',
-                        'message': f'👏 Thanks for subscribing {display_name}'
-                    }
+                        receiver: list = [email]
+                        res_email = send_emails(receiver, smtp_server, smtp_email, req_user.uuid, smtp_password,
+                                                welcome_message_subject, welcome_message)
+                        resp = {
+                            'status': 'ok',
+                            'message': f'👏 Thanks: Check your email for a free package {display_name}'
+                        } if res_email['status'] is 'ok' else {
+                            'status': 'ok',
+                            'message': f'👏 Thanks for subscribing {display_name}'
+                        }
+                    else:
+                        resp = {
+                            'status': 'ok',
+                            'message': f'👏 Thanks for subscribing {display_name}'
+                        }
+                    return resp
                 else:
                     return {
                         'status': 'ok',
@@ -122,7 +132,6 @@ def all_subscribers_emails(uuid: int) -> list or dict:
             'docs': [],
             'len': 0
         }
-
 
 # print(
 #     new_subscription(
