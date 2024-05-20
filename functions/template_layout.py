@@ -3,7 +3,7 @@ from functions.config import website_uri
 
 def template_layout(content, memoji, company, category):
     return F""" 
-      <body style="font-size: 17px; max-width: 700px; width:100%; margin: 0 auto; padding:20px 30px;border-radius:20px; -webkit-text-size-adjust: 100%;background-color: #FAFAFA; color: #000000">
+      <body style="font-size: 16px;line-height: 1.5; max-width: 700px; width:100%; margin: 0 auto; padding:20px 30px;border-radius:20px; -webkit-text-size-adjust: 100%;background-color: #FAFAFA; color: #000000">
       <div style="text-align: center; margin-bottom:20px;">
         <img src="{website_uri}{memoji}"
              width="100px"
