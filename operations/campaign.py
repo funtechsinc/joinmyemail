@@ -81,6 +81,30 @@ def user_campaigns(uuid: int) -> dict:
             'len': 0
         }
 
+
+# delete campaign
+def delete_campaign(campaign_id: int):
+    res = db_session.query(CampaignTable).filter(CampaignTable.campaign_id == campaign_id).one_or_none()
+    try:
+        if res is None:
+            return {
+                'status': 'error',
+                'message': f'campaign with ID {campaign_id} do not exist',
+            }
+        else:
+            db_session.delete(res)
+            db_session.commit()
+            return {
+                'status': 'ok',
+                'message': 'Campaign Deleted!'
+            }
+    except Exception as e:
+        db_session.rollback()
+        return {
+            'status': 'error',
+            'message': str(e)
+        }
+
 # def edit_campaign(doc: dict, uuid: int) -> dict:
 #     criteria: dict = {'uuid': uuid}
 #     doc = doc

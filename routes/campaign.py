@@ -3,7 +3,6 @@ import operations.campaign as db
 import all_routes
 from models.pydantic_model import Campaign
 
-
 campaign_routes = APIRouter()
 
 
@@ -21,4 +20,12 @@ def create_campaigns(doc: Campaign, uuid: int):
 def all_campaigns(uuid: int):
     uuid = uuid
     res: dict = db.user_campaigns(uuid)
+    return res
+
+
+# Delete Campaign
+@campaign_routes.delete(all_routes.campaign_delete)
+def delete_campaign(campaign_id: int):
+    campaign_id = campaign_id
+    res: dict = db.delete_campaign(campaign_id)
     return res

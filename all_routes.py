@@ -29,6 +29,7 @@ subscription_all = '/all/subscription/{uuid}'
 # campaign
 campaign_create = '/create/campaign/{uuid}'
 campaign_all = '/all/campaigns/{uuid}'
+campaign_delete = '/delete/campaign/{campaign_id}'
 
 # analytics
 analytics_yearly_campaigns = '/analytics/yearly/campaigns/{year}/{uuid}'
