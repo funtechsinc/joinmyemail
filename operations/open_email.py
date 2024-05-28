@@ -22,7 +22,7 @@ def email_open(email: str, campaign_id: int):
 def get_campaign_opens(campaign_id: int):
     try:
         criteria = {'campaign_id': campaign_id}
-        res = db_session.query(OpenCampaigns).filter_by(**criteria).one_or_none()
+        res = db_session.query(OpenCampaigns).filter_by(**criteria).all()
         if res is not None:
             return {
                 'status': 'ok',
