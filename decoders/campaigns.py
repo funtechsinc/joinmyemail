@@ -6,6 +6,7 @@ def decode_campaign(doc: {}) -> dict:
     return {
         'campaign_id': doc.campaign_id,
         'subject': doc.subject,
+        'body': doc.body,
         'server': get_smtp(doc.smtp_id)['doc']['server_name'],
         'number_of_subscribers_reach': doc.number_of_subscribers_reach,
         'success': doc.success,
