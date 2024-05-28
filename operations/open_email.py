@@ -1,6 +1,6 @@
 from models.sql_model import OpenCampaigns
 from connection import db_session
-
+from decoders.opens import decode_opens
 
 # opening an email
 def email_open(email: str, campaign_id: int):
@@ -26,7 +26,8 @@ def get_campaign_opens(campaign_id: int):
         if res is not None:
             return {
                 'status': 'ok',
-                'opens': len(res)
+                'opens': len(res),
+                'docs': decode_opens(res)
             }
         else:
             return {
