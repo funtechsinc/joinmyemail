@@ -8,7 +8,7 @@ profile_route = APIRouter()
 
 # update profile
 @profile_route.patch(all_routes.auth_update)
-def update_user_profile(doc: User, uuid:str):
+def update_user_profile(doc: User, uuid: int):
     uuid = uuid
     doc = doc.model_dump(exclude_unset=True)
     doc = dict(doc)
@@ -18,7 +18,7 @@ def update_user_profile(doc: User, uuid:str):
 
 # create handle
 @profile_route.patch(all_routes.auth_create_user_handle)
-def create_handle(doc: UserHandle, uuid: str):
+def create_handle(doc: UserHandle, uuid: int):
     uuid = uuid
     doc = dict(doc)
     res = update_handle(doc, uuid)
@@ -27,7 +27,7 @@ def create_handle(doc: UserHandle, uuid: str):
 
 # welcome message
 @profile_route.patch(all_routes.auth_create_welcome_message)
-def create_handle(doc: WelcomeMessage, uuid: str):
+def welcome_message(doc: WelcomeMessage, uuid: str):
     uuid = uuid
     doc = dict(doc)
     res = auth_set_welcome_message(doc, uuid)

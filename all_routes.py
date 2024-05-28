@@ -34,3 +34,7 @@ campaign_delete = '/delete/campaign/{campaign_id}'
 # analytics
 analytics_yearly_campaigns = '/analytics/yearly/campaigns/{year}/{uuid}'
 analytics_yearly_subscriptions = '/analytics/yearly/subscriptions/{year}/{uuid}'
+
+
+# opening emails
+campaign_opens = '/campaign/opens/{campaign_id}'

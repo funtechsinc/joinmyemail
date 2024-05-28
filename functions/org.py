@@ -11,3 +11,4 @@ smtp_server = ''
 def new_subscriber_template(content: str):
     return template_layout()
 
+

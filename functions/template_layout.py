@@ -1,7 +1,14 @@
 from functions.config import website_uri
+from functions.config import api_uri
 
 
-def template_layout(content, memoji, company, category):
+def template_layout(content, memoji, company, category, email=None, campaign_id=None):
+    tracking_pexel = f"""<img src = "{api_uri}/tracking-pixel?email={email}&campaign={campaign_id}" 
+    width = "1"
+    height = "1"
+    style = "display:none;"
+    alt = "" />""" if campaign_id is not None else ''
+
     return F""" 
       <body style="font-size: 16px;line-height: 1.5; max-width: 700px; width:100%; margin: 0 auto; padding:20px 30px;border-radius:20px; -webkit-text-size-adjust: 100%;background-color: #FAFAFA; color: #000000">
       <div style="text-align: center; margin-bottom:20px;">
@@ -43,5 +50,8 @@ def template_layout(content, memoji, company, category):
       </table>
       <!-- End unsubscribe section -->
    </footer>
+     <!-- Tracking Pixel -->
+     {tracking_pexel}
+     
       </body>
     """

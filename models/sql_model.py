@@ -120,3 +120,19 @@ class CampaignTable(SQLBASE):
         self.errors = errors
         self.deployed = deployed
 
+
+# emails opened
+class OpenCampaigns(SQLBASE):
+    __tablename__: str = 'email_opens'
+    analyst = generate_analytics(Get_Time_Stamp(), True)
+    email_open_id = Column(Integer, primary_key=True, index=True , autoincrement=True)
+    email = Column(String, index=True)
+    campaign_id = Column(Integer, ForeignKey('campaigns.campaign_id'), index=True)
+    timestamp = Column(String, default=Get_Time_Stamp())
+    year = Column(Integer, default=analyst['year'])
+    day = Column(Integer, default=analyst['day'])
+    month_number = Column(Integer, default=analyst['month_number'])
+
+    def __init__(self, email, campaign_id):
+        self.email = email
+        self.campaign_id = campaign_id

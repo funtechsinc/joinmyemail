@@ -8,6 +8,7 @@ from routes.campaign import campaign_routes
 from routes.subscription import subscription_route
 from routes.analytics import analytics_route
 from fastapi.middleware.cors import CORSMiddleware
+from routes.tracking_pexels import tracking_route
 
 
 app = FastAPI()
@@ -29,3 +30,4 @@ app.include_router(campaign_routes)
 app.include_router(profile_route)
 app.include_router(subscription_route)
 app.include_router(analytics_route)
+app.include_router(tracking_route)

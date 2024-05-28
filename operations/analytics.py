@@ -40,5 +40,6 @@ def get_yearly_campaigns(year: int, uuid: int) -> dict:
             'message': str(e)
         }
 
+
 # print(get_yearly_subs(2024, 1))
 # print(get_yearly_campaigns(2024, 1))

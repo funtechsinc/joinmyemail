@@ -6,11 +6,14 @@ from operations.auth import auth_get_user
 
 
 def send_emails(emails: list, server: str, email: str, sender_uuid: int, access_password: str, subject: str,
-                body: str) -> dict:
+                body: str, campaign_id: int = None) -> dict:
     try:
         # get the sender first
         user_sender = auth_get_user(sender_uuid)
         user_sender = user_sender['user']
+
+        # get campaign details to know if user opem the email
+        campaign_id = campaign_id
 
         smtp_server = server
         smtp_port = 587
@@ -31,14 +34,15 @@ def send_emails(emails: list, server: str, email: str, sender_uuid: int, access_
         server.login(gmail_user, gmail_password)
         from_email = gmail_user
 
-        html_body = template_layout(body, user_sender['photo_url'], user_sender['company'], user_sender['category'],
-                                    )
         i = 0
         errors = 0
         while i < len(receivers):
             try:
                 to_email = receivers[i]['email']
                 to_username = receivers[i]['username']
+                html_body = template_layout(body, user_sender['photo_url'], user_sender['company'],
+                                            user_sender['category'], email=to_email, campaign_id=campaign_id
+                                            )
                 msg = MIMEText(html_body.replace('{{email}}', to_email).replace('{{username}}', to_username), "html")
                 msg["From"] = from_email
                 msg["To"] = to_email
