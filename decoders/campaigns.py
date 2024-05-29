@@ -8,10 +8,12 @@ def decode_campaign(doc: {}) -> dict:
         'subject': doc.subject,
         'body': doc.body,
         'server': get_smtp(doc.smtp_id)['doc']['server_name'],
+        'server_id': doc.smtp_id,
         'number_of_subscribers_reach': doc.number_of_subscribers_reach,
         'success': doc.success,
         'errors': doc.errors,
         'deployed': doc.deployed,
+        'publish': 'published' if doc.deployed else 'Not Published',
         'analytics': generate_analytics(doc.timestamp, False)
     }
 

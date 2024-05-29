@@ -116,7 +116,7 @@ def edit_campaign(doc: dict, campaign_id: int) -> dict:
         criteria: dict = {'campaign_id': campaign_id}
         is_deployed = doc['deployed']
         doc = doc
-        res = db_session.query(CampaignTable).filter_by(criteria).one_or_none()
+        res = db_session.query(CampaignTable).filter_by(**criteria).one_or_none()
 
         if is_deployed:
             subject = doc['subject']
