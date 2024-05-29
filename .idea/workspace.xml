@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit" />
+    <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/campaign.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/campaign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/campaign.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/campaign.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

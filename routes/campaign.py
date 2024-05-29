@@ -15,6 +15,15 @@ def create_campaigns(doc: Campaign, uuid: int):
     return res
 
 
+# Edit campaign
+@campaign_routes.patch(all_routes.campaign_edit)
+def create_campaigns(doc: Campaign, campaign_id: int):
+    doc: dict = dict(doc)
+    campaign_id: int = campaign_id
+    res: dict = db.edit_campaign(doc, campaign_id)
+    return res
+
+
 # get user campaigns
 @campaign_routes.get(all_routes.campaign_all)
 def all_campaigns(uuid: int):

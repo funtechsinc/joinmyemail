@@ -53,7 +53,8 @@ def create_campaign(doc: dict, uuid: int) -> dict:
         campaign_id = req.campaign_id
 
         res = launch_campaign(subscribers, smtp_server, smtp_email, uuid, smtp_password, subject,
-                              body, campaign_id=campaign_id) if is_deployed and number_of_subscribers_reach > 0 else not_deployed_state
+                              body,
+                              campaign_id=campaign_id) if is_deployed and number_of_subscribers_reach > 0 else not_deployed_state
         res_campaign = db_session.query(CampaignTable).filter(CampaignTable.campaign_id == campaign_id).one_or_none()
         res_campaign.success = res['success']
         res_campaign.errors = res['errors']
@@ -109,18 +110,63 @@ def delete_campaign(campaign_id: int):
             'message': str(e)
         }
 
-# def edit_campaign(doc: dict, uuid: int) -> dict:
-#     criteria: dict = {'uuid': uuid}
-#     doc = doc
-#     res = db_session.query(CampaignTable).filter_by(criteria).one_or_none()
-#     if res is not None:
-#         if 'subject' in doc:
-#             res.subject = doc['subject']
-#         if 'body' in doc:
-#             res.body = doc['body']
-#         if 'smtp_id' in doc:
-#             res.server_id = doc['smtp_id']
 
+def edit_campaign(doc: dict, campaign_id: int) -> dict:
+    try:
+        criteria: dict = {'campaign_id': campaign_id}
+        is_deployed = doc['deployed']
+        doc = doc
+        res = db_session.query(CampaignTable).filter_by(criteria).one_or_none()
+
+        if is_deployed:
+            subject = doc['subject']
+            body = doc['body']
+            server = doc['smtp_id']
+            uuid = res.uuid
+
+            # get the smtp
+            smtp = get_smtp(server)
+            smtp = smtp['doc']
+            smtp_server = smtp['smtp_server']
+            smtp_email = smtp['server_email']
+            smtp_password = smtp['smtp_password']
+
+            # get all email list for the user
+            subscribers = all_subscribers_emails(uuid)
+            subscribers = subscribers['docs']
+            number_of_subscribers_reach = len(subscribers)
+            campaign_res = launch_campaign(subscribers, smtp_server, smtp_email, uuid, smtp_password, subject,
+                                           body, campaign_id=campaign_id)
+            if res is not None:
+                if 'subject' in doc:
+                    res.subject = doc['subject']
+                if 'body' in doc:
+                    res.body = doc['body']
+                if 'smtp_id' in doc:
+                    res.server_id = doc['smtp_id']
+                res.number_of_subscribers_reach = number_of_subscribers_reach
+                res.success = campaign_res['success']
+                res.errors = campaign_res['errors']
+                res.deployed = True
+                db_session.commit()
+            return campaign_res
+        else:
+            if 'subject' in doc:
+                res.subject = doc['subject']
+            if 'body' in doc:
+                res.body = doc['body']
+            if 'smtp_id' in doc:
+                res.server_id = doc['smtp_id']
+            db_session.commit()
+            return {
+                'status': 'ok',
+                'message': 'Campaign saved'
+            }
+    except Exception as e:
+        return {
+            'status': 'error',
+            'message': str(e)
+        }
 
 #
 # print(create_campaign({
