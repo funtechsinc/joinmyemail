@@ -15,7 +15,6 @@ def new_subscription(doc: dict, handle: str) -> {}:
         country = doc['country']
         display_name = doc["display_name"]
         subscription_hash = hash_function(email)
-
         req_user = db_session.query(UserTable).filter(UserTable.handle == handle).one_or_none()
 
         if req_user is not None:
@@ -32,7 +31,11 @@ def new_subscription(doc: dict, handle: str) -> {}:
             req = SubscriptionTable(req_user.uuid, display_name, email, country, subscription_hash)
 
             if is_email_valid(email):
-                res = db_session.query(SubscriptionTable).filter(SubscriptionTable.email == email).one_or_none()
+                criteria = {
+                    'uuid': req_user.uuid,
+                    'email': email
+                }
+                res = db_session.query(SubscriptionTable).filter_by(**criteria).one_or_none()
                 if res is None:
                     db_session.add(req)
                     db_session.commit()
