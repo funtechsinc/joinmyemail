@@ -15,7 +15,10 @@ db_name: str = 'defaultdb'
 # uri = 'postgresql://postgres:admin@localhost:5432/SubscribeToMyEmailList'
 uri = F'postgresql://{user}:{password}@{db_host}:{db_port}/{db_name}?sslmode=require'
 # uri = 'sqlite:///SubscribeToMyEmail.db'
-engine = create_engine(uri, pool_size=10, max_overflow=20)
+engine = create_engine(uri, pool_size=10,  # Initial pool size
+                       max_overflow=20,  # Number of connections to allow in overflow
+                       pool_timeout=30,  # Seconds to wait before giving up on getting a connection
+                       pool_recycle=3600)
 
 # bind to create all tables
 SQLBASE.metadata.create_all(bind=engine)
@@ -23,4 +26,3 @@ SQLBASE.metadata.create_all(bind=engine)
 # create session
 session = sessionmaker(bind=engine, autoflush=True)
 db_session = session()
-
