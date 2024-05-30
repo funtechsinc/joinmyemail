@@ -9,6 +9,7 @@ def decode_user(doc) -> dict:
         'email': doc.email,
         'handle': doc.handle,
         'company': doc.company,
+        'about': doc.about,
         'photo_url': doc.photo_url,
         'title': doc.title,
         'sub_title': doc.sub_title,
@@ -16,4 +17,5 @@ def decode_user(doc) -> dict:
         'youtube': doc.youtube,
         'instagram': doc.instagram,
         'x': doc.x,
+        'buy_me_a_coffe': doc.buy_me_a_coffe
     }
