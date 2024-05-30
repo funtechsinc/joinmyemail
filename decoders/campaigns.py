@@ -1,5 +1,6 @@
 from functions.TimeStamp import generate_analytics
 from operations.smtp_server import get_smtp
+from operations.templates import one_template
 
 
 def decode_campaign(doc: {}) -> dict:
@@ -13,6 +14,7 @@ def decode_campaign(doc: {}) -> dict:
         'success': doc.success,
         'errors': doc.errors,
         'deployed': doc.deployed,
+        'template_name': one_template(doc.template_id)['doc']['template_name'] if doc.template_id is not None else 'scratch',
         'publish': 'published' if doc.deployed else 'Not Published',
         'analytics': generate_analytics(doc.timestamp, False)
     }

@@ -8,9 +8,9 @@ def template_layout(content, memoji, company, category, email=None, campaign_id=
     height = "1"
     style = "display:none;"
     alt = "" />""" if campaign_id is not None else ''
-
+    content: str = content.replace('<img', ''' <img width='100%' ''')
     return F""" 
-      <body style="font-size: 16px;line-height: 1.5; max-width: 700px; width:100%; margin: 0 auto; padding:20px 30px;border-radius:20px; -webkit-text-size-adjust: 100%;background-color: #FAFAFA; color: #000000">
+      <body style="font-size: 16px;line-height: 1.4; max-width: 700px; width:100%; margin: 0 auto; padding:20px 30px;border-radius:20px; -webkit-text-size-adjust: 100%;background-color: #FAFAFA; color: #000000">
       <div style="text-align: center; margin-bottom:20px;">
         <img src="{website_uri}{memoji}"
              width="100px"
@@ -25,8 +25,9 @@ def template_layout(content, memoji, company, category, email=None, campaign_id=
         </div>
          
      </div>
+   <div style="margin-top:10px;margin-bottom:10px;border-bottom:0.1rem solid #404040;"></div>
      {content}
-    <footer style="background-color:#F1F1F1;margin:20px 0;">
+    <footer style="margin:20px 0;">
         <!-- Start unsubscribe section -->
       <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 600px;" width="600">
         <tbody>

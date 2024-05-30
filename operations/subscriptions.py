@@ -14,8 +14,8 @@ def new_subscription(doc: dict, handle: str) -> {}:
         email = doc["email"]
         country = doc['country']
         display_name = doc["display_name"]
-        subscription_hash = hash_function(email)
         req_user = db_session.query(UserTable).filter(UserTable.handle == handle).one_or_none()
+        subscription_hash = hash_function(email + str(req_user.uuid))
 
         if req_user is not None:
             welcome_message = req_user.welcome_message

@@ -9,7 +9,7 @@ campaign_routes = APIRouter()
 # create campaign
 @campaign_routes.post(all_routes.campaign_create)
 def create_campaigns(doc: Campaign, uuid: int):
-    doc: dict = dict(doc)
+    doc: dict = dict(doc.model_dump(exclude_unset=True))
     uuid: int = uuid
     res: dict = db.create_campaign(doc, uuid)
     return res

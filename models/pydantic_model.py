@@ -60,5 +60,6 @@ class EmailTemplate(BaseModel):
 class Campaign(BaseModel):
     subject: str = None
     body: str = None
+    template_id: int = None
     smtp_id: int
     deployed: bool = None

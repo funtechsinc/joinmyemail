@@ -10,8 +10,9 @@ class UserTable(SQLBASE):
     __tablename__: str = 'users'
     uuid = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String)
+    about = Column(String)
     email = Column(String, unique=True)
-    password = Column(String, unique=True)
+    password = Column(String)
     handle = Column(String, unique=True)
     company = Column(String)
     photo_url = Column(String)
@@ -21,6 +22,8 @@ class UserTable(SQLBASE):
     youtube = Column(String)
     instagram = Column(String)
     x = Column(String)
+    buy_me_a_coffe = Column(String)
+    primary_color = Column(String)
     welcome_message = Column(String)
     welcome_message_subject = Column(String)
     call_to_action = Column(String)
@@ -59,7 +62,7 @@ class SubscriptionTable(SQLBASE):
     subscription_id = Column(Integer, primary_key=True, autoincrement=True)
     uuid = Column(Integer, ForeignKey('users.uuid'))
     display_name = Column(String)
-    email = Column(String, unique=True)
+    email = Column(String)
     country = Column(String)
     subscription_hash = Column(String, unique=True)
     timestamp = Column(String, default=analyst['timestamp'])
@@ -96,9 +99,10 @@ class CampaignTable(SQLBASE):
 
     analyst = generate_analytics(Get_Time_Stamp(), True)
 
-    campaign_id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
+    campaign_id = Column(Integer, primary_key=True, autoincrement=True)
     uuid = Column(Integer, ForeignKey('users.uuid'))
     smtp_id = Column(Integer, ForeignKey('smtp.smtp_id'))
+    template_id = Column(Integer, default=None)
     subject = Column(String)
     body = Column(String)
     number_of_subscribers_reach = Column(Integer)
@@ -110,7 +114,7 @@ class CampaignTable(SQLBASE):
     day = Column(Integer, default=analyst['day'])
     month_number = Column(Integer, default=analyst['month_number'])
 
-    def __init__(self, uuid, subject, body, smtp_id, number_of_subscribers_reach, success, errors, deployed):
+    def __init__(self, uuid, subject, body, smtp_id, number_of_subscribers_reach, success, errors, template_id, deployed):
         self.uuid = uuid
         self.subject = subject
         self.body = body
@@ -118,6 +122,7 @@ class CampaignTable(SQLBASE):
         self.number_of_subscribers_reach = number_of_subscribers_reach
         self.success = success
         self.errors = errors
+        self.template_id = template_id
         self.deployed = deployed
 
 
@@ -125,7 +130,7 @@ class CampaignTable(SQLBASE):
 class OpenCampaigns(SQLBASE):
     __tablename__: str = 'email_opens'
     analyst = generate_analytics(Get_Time_Stamp(), True)
-    email_open_id = Column(Integer, primary_key=True, index=True , autoincrement=True)
+    email_open_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     email = Column(String, index=True)
     campaign_id = Column(Integer, ForeignKey('campaigns.campaign_id'), index=True)
     timestamp = Column(String, default=Get_Time_Stamp())

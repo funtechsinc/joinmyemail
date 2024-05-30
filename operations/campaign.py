@@ -18,6 +18,7 @@ def create_campaign(doc: dict, uuid: int) -> dict:
         body = doc['body']
         server = doc['smtp_id']
         is_deployed = doc['deployed']
+        template_id = doc['template_id'] if 'template_id' in doc else None
 
         # get the smtp
         smtp = get_smtp(server)
@@ -46,6 +47,7 @@ def create_campaign(doc: dict, uuid: int) -> dict:
             number_of_subscribers_reach,
             0,
             0,
+            template_id,
             is_deployed
         )
         db_session.add(req)
