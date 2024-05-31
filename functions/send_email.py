@@ -41,8 +41,8 @@ def send_emails(emails: list, server: str, email: str, sender_uuid: int, access_
                 to_email = receivers[i]['email']
                 to_username = receivers[i]['username']
                 html_body = template_layout(body, user_sender['photo_url'], user_sender['company'],
-                                            user_sender['category'], email=to_email, campaign_id=campaign_id ,
-                                            hash_token=receivers[i]['hash_token']
+                                            user_sender['category'], email=to_email, campaign_id=campaign_id,
+                                            hash_token=receivers[i]['hash_token'] if campaign_id is not None else None
                                             )
                 msg = MIMEText(html_body.replace('{{email}}', to_email).replace('{{username}}', to_username), "html")
                 msg["From"] = from_email

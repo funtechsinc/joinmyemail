@@ -9,6 +9,17 @@ def template_layout(content, memoji, company, category, email=None, campaign_id=
     style = "display:none;"
     alt = "" />""" if campaign_id is not None else ''
     content: str = content.replace('<img', ''' <img width='100%' ''')
+    unsub = F"""
+        <p style=" font-family: 'Helvetica', Arial, sans-serif; font-weight: normal; text-decoration: none; color: #404040;">
+                Not wanting to receive these emails?
+              </p>
+              <p>
+               <a  style="font-family: 'Helvetica', Arial, sans-serif; color: #6366f1;" href="{website_uri}/unsubscribe/{hash_token}">
+                 <b><u>unsubscribe here</u></b>
+                 </a>
+                </p>
+             """ if campaign_id is not None else ''
+
     return F""" 
       <body style="font-size: 16px;line-height: 1.4; max-width: 700px; width:100%; margin: 0 auto; padding:20px 30px;border-radius:20px; -webkit-text-size-adjust: 100%;">
       <div style="text-align: center; margin-bottom:20px;">
@@ -33,15 +44,9 @@ def template_layout(content, memoji, company, category, email=None, campaign_id=
         <tbody>
           <tr>
             <td style="width: 596px; vertical-align: top; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px;" width="596">
-              <p style=" font-family: 'Helvetica', Arial, sans-serif; font-weight: normal; text-decoration: none; color: #404040;">
-                Not wanting to receive these emails?
-              </p>
+          
 
-              <p>
-               <a  style="font-family: 'Helvetica', Arial, sans-serif; color: #6366f1;" href="{website_uri}/unsubscribe/{hash_token}">
-                 <b><u>unsubscribe here</u></b>
-                 </a>
-              </p>
+            {unsub}
 
               <p >
                <a style="text-decoration: none; color: #919293;" href="#">
