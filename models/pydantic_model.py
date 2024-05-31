@@ -6,12 +6,14 @@ class User(BaseModel):
     handle: str = None
     company: str = None
     title: str = None
+    about: str = None
     sub_title: str = None
     photo_url: str = None
     category: str = None
     youtube: str = None
     instagram: str = None
     x: str = None
+    buy_me_a_coffe: str = None
     welcome_message: str = None
     welcome_message_subject: str = None
     call_to_action: str = None

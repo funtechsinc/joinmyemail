@@ -129,6 +129,10 @@ def auth_update_profile(doc: dict, uuid) -> dict:
             result.instagram = doc["instagram"]
         if 'x' in doc:
             result.x = doc["x"]
+        if 'about' in doc:
+            result.about = doc["about"]
+        if 'buy_me_a_coffe' in doc:
+            result.buy_me_a_coffe = doc["buy_me_a_coffe"]
 
         db_session.commit()
         return {
