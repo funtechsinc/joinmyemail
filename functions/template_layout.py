@@ -38,26 +38,15 @@ def template_layout(content, memoji, company, category, email=None, campaign_id=
      </div>
    <div style="margin-top:10px;margin-bottom:10px;border-bottom:0.1rem solid #dddddd;"></div>
      {content}
-    <div style="margin:20px 0;">
+    <div style="margin-top:20px;margin-bottom:10px;border-bottom:0.1rem solid #dddddd;"></div>
+    <div align="center" style="text-align: center; vertical-align: top;" >
         <!-- Start unsubscribe section -->
-      <table align="center" style="text-align: center; vertical-align: top; width: 600px; max-width: 600px;" width="600">
-        <tbody>
-          <tr>
-            <td style="width: 596px; vertical-align: top; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px;" width="596">
-          
-
             {unsub}
-
               <p >
                <a style="text-decoration: none; color: #919293;" href="#">
                  <img src='{website_uri}/logo.png' width='200px'/>
                </a>
               </p>
-
-            </td>
-          </tr>
-        </tbody>
-      </table>
       <!-- End unsubscribe section -->
    </div>
      <!-- Tracking Pixel -->

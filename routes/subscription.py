@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 import all_routes
 import operations.subscriptions as subs
-from models.pydantic_model import UserSubscription
+from models.pydantic_model import UserSubscription, Unsubscribe
 
 subscription_route = APIRouter()
 
@@ -15,8 +15,9 @@ def create_subscription(doc: UserSubscription, handle: str) -> dict:
 
 
 # unsubscribe
-@subscription_route.get(all_routes.subscription_unsubscribe)
-def unsubscribe(hash_token: str) -> dict:
+@subscription_route.post(all_routes.subscription_unsubscribe)
+def unsubscribe(doc: Unsubscribe) -> dict:
+    hash_token = dict(doc)['hash_token']
     res = subs.unsubscribe(hash_token)
     return res
 

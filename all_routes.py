@@ -23,7 +23,7 @@ template_all = '/all/templates/{uuid}'
 
 # subscriptions
 subscriptions_create = '/create/subscription/{handle}'
-subscription_unsubscribe = '/unsubscribe/{hash_token}'
+subscription_unsubscribe = '/unsubscribe'
 subscription_all = '/all/subscription/{uuid}'
 
 # campaign

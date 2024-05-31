@@ -54,6 +54,10 @@ class UserSubscription(BaseModel):
     country: str
 
 
+class Unsubscribe(BaseModel):
+    hash_token: str
+
+
 class EmailTemplate(BaseModel):
     template_name: str = None
     body: str = None
