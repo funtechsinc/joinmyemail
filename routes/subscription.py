@@ -15,7 +15,7 @@ def create_subscription(doc: UserSubscription, handle: str) -> dict:
 
 
 # unsubscribe
-@subscription_route.post(all_routes.subscription_unsubscribe)
+@subscription_route.get(all_routes.subscription_unsubscribe)
 def unsubscribe(hash_token: str) -> dict:
     res = subs.unsubscribe(hash_token)
     return res
