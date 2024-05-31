@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decoders/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/decoders/subscriptions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/send_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/send_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/template_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions/template_layout.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
