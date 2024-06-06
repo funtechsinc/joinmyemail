@@ -21,6 +21,8 @@ def get_yearly_subs(year: int, uuid: int) -> dict:
             'status': 'error',
             'message': str(e)
         }
+    finally:
+        db_session.close()
 
 
 # get year campaigns
@@ -35,11 +37,13 @@ def get_yearly_campaigns(year: int, uuid: int) -> dict:
             'docs': docs
         }
     except Exception as e:
+        db_session.rollback()
         return {
             'status': 'error',
             'message': str(e)
         }
-
+    finally:
+        db_session.close()
 
 # print(get_yearly_subs(2024, 1))
 # print(get_yearly_campaigns(2024, 1))

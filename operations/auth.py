@@ -160,7 +160,6 @@ def update_handle(doc: dict, uuid: int) -> dict:
                 'message': '👏 Handle updated successfully',
             }
         else:
-            db_session.rollback()
             return {
                 'status': 'error',
                 'message': F'No record for Id {uuid}'

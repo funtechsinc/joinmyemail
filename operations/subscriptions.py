@@ -46,7 +46,8 @@ def new_subscription(doc: dict, handle: str) -> {}:
                                                 welcome_message_subject, welcome_message)
                         resp = {
                             'status': 'ok',
-                            'message': f'👏 Thanks: Check your email for a free package {display_name}'
+                            'email_sent': True,
+                            'message': f'👏 Thanks {display_name}, emails can sometimes take longer to be delivered!'
                         } if res_email['status'] is 'ok' else {
                             'status': 'ok',
                             'message': f'👏 Thanks for subscribing {display_name}'

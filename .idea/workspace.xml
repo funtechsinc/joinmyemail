@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e425bf33-d6a5-4dc3-b98d-3851566c4ca0" name="Changes" comment="new commit">
-      <change beforePath="$PROJECT_DIR$/all_routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/pydantic_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/pydantic_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/subscription.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/subscription.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/connection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/analytics.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/analytics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operations/subscriptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/operations/subscriptions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,29 +85,7 @@
       <recent name="D:\@Python\Subscribe to my mail\routes" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.connection">
-    <configuration name="auth" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Subscribe to my mail" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/operations" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\@Python\Subscribe to my mail\operations\auth.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.subscriptions">
     <configuration name="campaign" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Subscribe to my mail" />
       <option name="ENV_FILES" value="" />
@@ -216,13 +196,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="subscriptions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Subscribe to my mail" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/operations" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/operations/subscriptions.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.subscriptions" />
         <item itemvalue="Python.connection" />
         <item itemvalue="Python.contraints" />
         <item itemvalue="Python.campaign" />
         <item itemvalue="Python.smtp_server" />
-        <item itemvalue="Python.auth" />
       </list>
     </recent_temporary>
   </component>
