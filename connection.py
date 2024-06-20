@@ -16,8 +16,13 @@ db_name: str = 'defaultdb'
 uri = F'postgresql://{user}:{password}@{db_host}:{db_port}/{db_name}?sslmode=require'
 # uri = 'sqlite:///SubscribeToMyEmail.db'
 engine = create_engine(uri,
-                       pool_size=10,
-                       max_overflow=20)
+                        pool_size=100,            # Very high pool size
+    max_overflow=50,          # Allow overflow connections
+    pool_timeout=60,          # Wait time for a connection before throwing an error
+    pool_recycle=1800,        # Recycle connections every 30 minutes
+    connect_args={"sslmode": "require"} 
+                       
+                       )
 
 # bind to create all tables
 SQLBASE.metadata.create_all(bind=engine)
