@@ -18,15 +18,15 @@ def decode_yearly(docs: list) -> list:
             month_counts[month_name] += 1
 
     # Serialize the counts into the desired format
-    serialized_data = [{'x': month_name, 'y': count} for month_name, count in month_counts.items()]
+    serialized_data = [{'label': month_name, 'y': count} for month_name, count in month_counts.items()]
 
     # Fill in missing months with count 0
     for month_name in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']:
         if month_name not in month_counts:
-            serialized_data.append({'x': month_name, 'y': 0})
+            serialized_data.append({'label': month_name, 'y': 0})
 
     # Sort serialized_data by month
-    serialized_data.sort(key=lambda x: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].index(x['x']))
+    serialized_data.sort(key=lambda label: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].index(label['label']))
 
     # Output the serialized data
     return serialized_data
