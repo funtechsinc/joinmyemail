@@ -8,7 +8,7 @@ def template_layout(content, memoji, company, category, email=None, campaign_id=
     height = "1"
     style = "display:none;"
     alt = "" />""" if campaign_id is not None else ''
-    content: str = content.replace('<img', ''' <img width='100%' height="auto" style="width:100%; height:auto;" ''')
+    content: str = content.replace('<img', ''' <img style="max-width:100%; height:auto;" ''')
     unsub = F"""
         <p style=" font-family: 'Helvetica', Arial, sans-serif; font-weight: normal; text-decoration: none; color: #404040;">
                 Not wanting to receive these emails?
