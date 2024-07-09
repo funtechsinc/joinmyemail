@@ -1,3 +1,5 @@
 .env
 SubscribeToMyEmail.db
 *.db
+*.sqlite
+*.sqlite3
